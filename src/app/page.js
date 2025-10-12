@@ -1,10 +1,10 @@
-import Header from "@/components/organism/header";
-import Image from "next/image";
+import HomePage from "@/pages/homePage";
+
 
 export default function Home() {
   return (
     <div>
-      <Header />
+      <HomePage />
     </div>
   );
 }
