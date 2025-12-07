@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Robotika UNS 2025 Landing Page
 
-First, run the development server:
+Website Landing Page untuk Tim Robotika UNS dengan tema "Futuristic Academic".
+Dibangun menggunakan Next.js 14, Tailwind CSS, Framer Motion, dan Lenis Scroll.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Cara Menjalankan Project
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1.  **Install Dependencies** (jika belum):
+    ```bash
+    npm install
+    ```
+2.  **Jalankan Server Development**:
+    ```bash
+    npm run dev
+    ```
+3.  Buka [http://localhost:3000](http://localhost:3000) di browser.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🎨 Panduan Kustomisasi Aset (Gambar & Font)
 
-## Learn More
+Semua file aset (gambar, font, icon) disimpan di dalam folder `public/`.
 
-To learn more about Next.js, take a look at the following resources:
+### 1. Mengganti Gambar Background Hero
+*   Siapkan gambar background Anda (rekomendasi: resolusi tinggi, agak gelap).
+*   Namai file tersebut: `hero-bg-placeholder.jpg`
+*   Simpan di folder: `public/images/`
+    *   *Path lengkap*: `d:\Coding\Robotik26\Robotika-UNS\public\images\hero-bg-placeholder.jpg`
+*   Jika ingin menggunakan nama file lain, ubah kode di `src/components/sections/Hero.tsx`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 2. Mengganti Logo & Gambar Tim
+Di halaman "Our Team" dan "Divisi", gambar diambil dari file `src/lib/data.ts`.
+Untuk menggantinya:
+1.  Masukkan file gambar baru Anda ke folder `public/images/`.
+2.  Buka file `src/lib/data.ts`.
+3.  Cari bagian `TEAMS` atau `NON_TECH_DIVISIONS`.
+4.  Ubah bagian `image: "..."` atau `logo: "..."` sesuai nama file Anda.
+    *   Contoh: `image: "/images/fotobanugroho.jpg"`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 3. Mengganti Font (Custom Font)
+Code saat ini mencari file font khusus di: `public/fonts/custom-font.ttf`.
 
-## Deploy on Vercel
+*   **Langkah 1**: Siapkan file font Anda (format `.ttf`).
+*   **Langkah 2**: Ubah namanya menjadi `custom-font.ttf`.
+*   **Langkah 3**: Masukkan ke folder `public/fonts/`.
+*   *Note*: Jika file Anda `.otf` atau namanya beda, Anda perlu mengedit `src/app/layout.tsx`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 4. Menambah Divisi / Tim Baru
+Semua data teks ada di `src/lib/data.ts`. Anda bisa menambah atau mengurangi item di dalam array `NON_TECH_DIVISIONS`, `TECH_DIVISIONS`, atau `TEAMS` langsung di file tersebut.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🛠️ Tech Stack
+*   **Framework**: Next.js 14 (App Router)
+*   **Styling**: Tailwind CSS
+*   **Animation**: Framer Motion
+*   **Scroll**: Lenis
+*   **Icons**: Lucide React
