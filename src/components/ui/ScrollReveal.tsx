@@ -19,12 +19,17 @@ export default function ScrollReveal({
 
     const { scrollYProgress } = useScroll({
         target: container,
-        offset: ["start 0.9", "center 0.5"]
+        offset: ["start end", "end start"]
     });
 
-    const opacity = useTransform(scrollYProgress, [0, 1], [0.3, 1]);
-    // Optional: subtle parallax or scale
-    const y = useTransform(scrollYProgress, [0, 1], [20, 0]);
+    // Opacity: Fade in (0->0.2), Stay (0.2->0.8), Fade out (0.8->1)
+    const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+
+    // Scale: Subtle zoom in and out
+    const scale = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.8, 1, 1, 0.8]);
+
+    // Y Position: Slide up on entry, slide up/away on exit
+    const y = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [50, 0, 0, -50]);
 
     // If the user passed a specific tag like "h1" or "p", we want to render that,
     // but we need a motion component. motion[Component] might be tricky if Component is a string variable.
@@ -38,7 +43,7 @@ export default function ScrollReveal({
     return (
         <MotionComponent
             ref={container}
-            style={{ opacity, y }}
+            style={{ opacity, y, scale }}
             className={`will-change-opacity ${className}`}
         >
             {children}
