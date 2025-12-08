@@ -29,9 +29,7 @@ export const NON_TECH_DIVISIONS = [
         details: "Bertanggung jawab atas evaluasi kinerja anggota (Rapor) dan membangun chemistry antar anggota melalui kegiatan bonding rutin.",
         stats: "Focus: Internal Harmony",
         accent: "bg-purple-500",
-        // Adding properties for Carousel compatibility if needed, or mapping later.
-        // Let's assume Carousel3D expects specific props, or we map them.
-        image: "/images/placeholder_hr.jpg", // Placeholder
+        image: "/images/placeholder.jpg", // Placeholder
         name: "Human Resources", // Alias for title
         desc: "Evaluasi kinerja, bonding", // Alias for shortDesc
         fullDesc: "Bertanggung jawab atas evaluasi kinerja anggota (Rapor) dan membangun chemistry antar anggota melalui kegiatan bonding rutin.",
@@ -45,7 +43,7 @@ export const NON_TECH_DIVISIONS = [
         details: "Mengelola branding organisasi, sosial media, dan menjalin kemitraan strategis dengan pihak eksternal. Target tahun ini: 2000 Followers.",
         stats: "Target: 2k Followers",
         accent: "bg-pink-500",
-        image: "/images/placeholder_humas.jpg",
+        image: "/images/placeholder.jpg",
         name: "Humas Media",
         desc: "Partnership, Branding",
         fullDesc: "Mengelola branding organisasi, sosial media, dan menjalin kemitraan strategis dengan pihak eksternal. Target tahun ini: 2000 Followers.",
@@ -59,7 +57,7 @@ export const NON_TECH_DIVISIONS = [
         details: "Pusat administrasi, pengelolaan surat menyurat, pengarsipan dokumen penting, dan inventarisasi aset organisasi.",
         stats: "Focus: Administration",
         accent: "bg-blue-500",
-        image: "/images/placeholder_sekretaris.jpg",
+        image: "/images/placeholder.jpg",
         name: "Sekretaris",
         desc: "Inventarisasi, Arsip",
         fullDesc: "Pusat administrasi, pengelolaan surat menyurat, pengarsipan dokumen penting, dan inventarisasi aset organisasi.",
@@ -73,7 +71,7 @@ export const NON_TECH_DIVISIONS = [
         details: "Mengelola arus kas, menyusun Rencana Anggaran Biaya (RAB), dan memastikan transparansi keuangan organisasi.",
         stats: "Focus: Financial Health",
         accent: "bg-green-500",
-        image: "/images/placeholder_bendahara.jpg",
+        image: "/images/placeholder.jpg",
         name: "Bendahara",
         desc: "RAB, Cashflow",
         fullDesc: "Mengelola arus kas, menyusun Rencana Anggaran Biaya (RAB), dan memastikan transparansi keuangan organisasi.",
@@ -89,7 +87,12 @@ export const TECH_DIVISIONS = [
         shortDesc: "Riset bahan, CAD, Manufaktur Bodi",
         details: "Fokus pada riset material, perancangan desain CAD 3D, dan manufaktur bodi robot yang presisi.",
         stats: "Focus: Mechanical Design",
-        accent: "bg-orange-500"
+        accent: "bg-orange-500",
+        image: "/images/placeholder.jpg",
+        name: "Desain & Manufaktur",
+        desc: "Riset bahan, CAD, Manufaktur Bodi",
+        fullDesc: "Fokus pada riset material, perancangan desain CAD 3D, dan manufaktur bodi robot yang presisi.",
+        specs: "Focus: Mechanical Design"
     },
     {
         id: "elektronis",
@@ -98,7 +101,12 @@ export const TECH_DIVISIONS = [
         shortDesc: "PCB Design, Wiring, Electrical framework",
         details: "Merancang sistem kelistrikan, desain PCB, layout wiring yang rapi, dan manajemen daya robot.",
         stats: "Focus: Circuitry",
-        accent: "bg-yellow-500"
+        accent: "bg-yellow-500",
+        image: "/images/placeholder.jpg",
+        name: "Elektronis",
+        desc: "PCB Design, Wiring, Electrical framework",
+        fullDesc: "Merancang sistem kelistrikan, desain PCB, layout wiring yang rapi, dan manajemen daya robot.",
+        specs: "Focus: Circuitry"
     },
     {
         id: "pemrograman",
@@ -107,7 +115,12 @@ export const TECH_DIVISIONS = [
         shortDesc: "Algorithm, AI, Robot Navigation",
         details: "Mengembangkan algoritma cerdas, implementasi AI, dan sistem navigasi otonom untuk pergerakan robot.",
         stats: "Focus: Intelligence",
-        accent: "bg-cyan-500"
+        accent: "bg-cyan-500",
+        image: "/images/placeholder.jpg",
+        name: "Pemrograman",
+        desc: "Algorithm, AI, Robot Navigation",
+        fullDesc: "Mengembangkan algoritma cerdas, implementasi AI, dan sistem navigasi otonom untuk pergerakan robot.",
+        specs: "Focus: Intelligence"
     },
     {
         id: "rnd",
@@ -116,7 +129,12 @@ export const TECH_DIVISIONS = [
         shortDesc: "Proposal & Article writing for competitions",
         details: "Bekerja pada inovasi baru, penulisan proposal kompetisi, dan publikasi artikel ilmiah terkait teknologi robotika.",
         stats: "Focus: Innovation",
-        accent: "bg-indigo-500"
+        accent: "bg-indigo-500",
+        image: "/images/placeholder.jpg",
+        name: "Riset & Pengembangan",
+        desc: "Proposal & Article writing for competitions",
+        fullDesc: "Bekerja pada inovasi baru, penulisan proposal kompetisi, dan publikasi artikel ilmiah terkait teknologi robotika.",
+        specs: "Focus: Innovation"
     }
 ];
 
