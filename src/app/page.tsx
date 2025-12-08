@@ -54,7 +54,9 @@ export default function Home() {
         <main className="flex min-h-screen flex-col items-center justify-between relative bg-[#0B1120]">
 
             {/* 1. Hero Section (Image BG + Fade) */}
-            <Hero />
+            <div id="hero" className="w-full bg-slate-950 border-t border-white/5 py-20" >
+                <Hero />
+            </div>
 
             {/* 2. Philosophy Section (About) */}
             <div id="philosophy" className="w-full bg-[#0B1120]">
@@ -71,7 +73,7 @@ export default function Home() {
             </div>
 
             {/* 4. Divisi Teknis */}
-            <div className="w-full bg-[#0F172A] border-t border-white/5 py-20">
+            <div className="w-full bg-[#0B1120] border-t border-white/5 py-20">
                 <ScrollReveal className="w-full">
                     <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-[--color-brand-purple]">DIVISI TEKNIS</h2>
                     <p className="text-center text-gray-400 mb-10 text-xl">Engineers of the Future</p>
