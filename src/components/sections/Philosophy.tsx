@@ -1,35 +1,46 @@
 
 "use client";
 
-import { useRef } from "react";
+import { FlipCard } from "@/components/ui/FlipCard";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { PHILOSOPHY_CONTENT } from "@/lib/data";
 
 export default function Philosophy() {
     return (
-        <section className="py-32 px-4 w-full min-h-[80vh] flex flex-col justify-center items-center bg-[--background]">
-            <div className="max-w-5xl text-center space-y-20">
+        <section className="py-32 px-4 w-full min-h-[80vh] flex flex-col justify-center items-center bg-[#0B1120]">
+            <div className="max-w-7xl w-full flex flex-col items-center gap-12">
+                <ScrollReveal>
+                    <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-8">
+                        OUR <span className="text-[--color-brand-cyan]">PHILOSOPHY</span>
+                    </h2>
+                </ScrollReveal>
 
-                {/* Visi */}
-                <div className="space-y-4">
-                    <ScrollReveal as="h1" className="text-5xl font-semibold tracking-widest text-[--color-brand-cyan] uppercase">
-                        Visi Kami
+                <div className="flex flex-col md:flex-row gap-8 lg:gap-16 w-full justify-center items-center">
+
+                    {/* VISI CARD */}
+                    <ScrollReveal className="w-full md:w-auto">
+                        <FlipCard
+                            title="VISI"
+                            subtitle="Vision of Future"
+                            description={PHILOSOPHY_CONTENT.visi}
+                            className="w-full md:w-80 lg:w-96 h-96"
+                            frontClassName="border-cyan-500/20 bg-gradient-to-br from-[#121c32] to-[#0B1120]"
+                        />
                     </ScrollReveal>
-                    <ScrollReveal as="p" className="text-2xl md:text-2xl font-medium leading-tight text-[--foreground]">
-                        &quot;{PHILOSOPHY_CONTENT.visi}&quot;
+
+                    {/* MISI CARD */}
+                    <ScrollReveal className="w-full md:w-auto">
+                        <FlipCard
+                            title="MISI"
+                            subtitle="Mission to Accomplish"
+                            description={PHILOSOPHY_CONTENT.misi}
+                            className="w-full md:w-80 lg:w-96 h-96"
+                            frontClassName="border-purple-500/20 bg-gradient-to-br from-[#121c32] to-[#0B1120]"
+                            backClassName="shadow-purple-900/10 border-purple-500/20"
+                        />
                     </ScrollReveal>
+
                 </div>
-
-                {/* Misi */}
-                <div className="space-y-4">
-                    <ScrollReveal as="h1" className="text-5xl font-semibold tracking-widest text-[--color-brand-purple] uppercase">
-                        Misi Kami
-                    </ScrollReveal>
-                    <ScrollReveal as="p" className="text-2xl md:text-2xl font-medium leading-relaxed text-gray-400">
-                        {PHILOSOPHY_CONTENT.misi}
-                    </ScrollReveal>
-                </div>
-
             </div>
         </section>
     );
