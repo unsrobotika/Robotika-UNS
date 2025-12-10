@@ -7,6 +7,7 @@ import TeamRadial from "@/components/sections/TeamRadial";
 import NonTechDivisions from "@/components/sections/NonTechDivisions";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import Footer from "@/components/sections/Footer";
+import AIChat from "@/components/sections/AIChat";
 import { TECH_DIVISIONS } from "@/lib/data";
 import { Carousel, Card } from "@/components/ui/AppleCardsCarousel";
 
@@ -85,6 +86,10 @@ export default function Home() {
             {/* 6. Footer */}
             <Footer />
 
+            {/* AI Chat - Kanan Bawah */}
+            <AIChat />
+
         </main>
     );
 }
+
