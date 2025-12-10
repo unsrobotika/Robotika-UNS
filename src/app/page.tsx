@@ -4,9 +4,10 @@
 import Hero from "@/components/sections/Hero";
 import Philosophy from "@/components/sections/Philosophy";
 import TeamRadial from "@/components/sections/TeamRadial";
+import NonTechDivisions from "@/components/sections/NonTechDivisions";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import Footer from "@/components/sections/Footer";
-import { NON_TECH_DIVISIONS, TECH_DIVISIONS } from "@/lib/data";
+import { TECH_DIVISIONS } from "@/lib/data";
 import { Carousel, Card } from "@/components/ui/AppleCardsCarousel";
 
 export default function Home() {
@@ -46,7 +47,6 @@ export default function Home() {
         });
     };
 
-    const nonTechCards = mapToCards(NON_TECH_DIVISIONS, "division");
     const techCards = mapToCards(TECH_DIVISIONS, "division");
 
 
@@ -64,12 +64,8 @@ export default function Home() {
             </div>
 
             {/* 3. Divisi Non-Teknis */}
-            <div id="divisions" className="w-full bg-slate-900 border-t border-white/5 py-20">
-                <ScrollReveal className="w-full">
-                    <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-[--color-brand-cyan]">DIVISI NON-TEKNIS</h2>
-                    <p className="text-center text-gray-400 mb-10 text-xl">Supporting Pillars of Our Ecosystem</p>
-                    <Carousel items={nonTechCards} />
-                </ScrollReveal>
+            <div id="divisions" className="w-full bg-slate-900 border-t border-white/5">
+                <NonTechDivisions />
             </div>
 
             {/* 4. Divisi Teknis */}
