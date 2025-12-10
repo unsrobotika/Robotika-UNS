@@ -2,7 +2,7 @@
 
 import { motion, useTransform, useScroll, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-import { NON_TECH_DIVISIONS } from "@/lib/data";
+import { TECH_DIVISIONS } from "@/lib/data";
 import { X } from "lucide-react";
 
 // Tipe untuk item divisi
@@ -21,7 +21,7 @@ interface DivisionItem {
     specs: string;
 }
 
-export default function NonTechDivisions() {
+export default function TechDivisions() {
     const targetRef = useRef<HTMLDivElement>(null);
     const [selectedDivision, setSelectedDivision] = useState<DivisionItem | null>(null);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -43,18 +43,18 @@ export default function NonTechDivisions() {
 
     // Duplikasi cards untuk efek looping
     const duplicatedDivisions = [
-        ...(NON_TECH_DIVISIONS as DivisionItem[]),
-        ...(NON_TECH_DIVISIONS as DivisionItem[]),
-        ...(NON_TECH_DIVISIONS as DivisionItem[]),
+        ...(TECH_DIVISIONS as DivisionItem[]),
+        ...(TECH_DIVISIONS as DivisionItem[]),
+        ...(TECH_DIVISIONS as DivisionItem[]),
     ];
 
-    // Animasi horizontal scroll yang lebih responsif
-    // Mobile: mulai dari 20% ke -80% untuk menampilkan semua card
-    // Desktop: mulai dari -10% ke -50% untuk scroll yang lebih cepat
+    // Animasi horizontal scroll DARI KIRI KE KANAN (kebalikan dari NonTech)
+    // Mobile: mulai dari nilai negatif ke positif
+    // Desktop: mulai dari nilai negatif ke nilai lebih positif
     const x = useTransform(
         scrollYProgress,
         [0, 1],
-        isMobile ? ["1%", "-171%"] : ["-10%", "-50%"]
+        isMobile ? ["-171%", "1%"] : ["-50%", "-10%"]
     );
 
     // Handler klik card
@@ -70,16 +70,16 @@ export default function NonTechDivisions() {
     };
 
     return (
-        <section ref={targetRef} className="relative h-[150vh] bg-slate-900">
+        <section ref={targetRef} className="relative h-[150vh] bg-[#0B1120]">
             {/* Sticky container untuk horizontal scroll */}
             <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden">
                 {/* Header */}
                 <div className="text-center mb-8 px-4">
-                    <h2 className="text-4xl md:text-5xl font-bold text-[--color-brand-cyan] mb-4">
-                        DIVISI NON-TEKNIS
+                    <h2 className="text-4xl md:text-5xl font-bold text-[--color-brand-purple] mb-4">
+                        DIVISI TEKNIS
                     </h2>
                     <p className="text-xl text-gray-400">
-                        Supporting Pillars of Our Ecosystem
+                        Engineers of the Future
                     </p>
                 </div>
 
@@ -117,8 +117,8 @@ export default function NonTechDivisions() {
                             className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none"
                         >
                             <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 
-                                          rounded-3xl p-8 max-w-lg w-full border border-cyan-500/20 
-                                          shadow-2xl shadow-cyan-500/10 pointer-events-auto">
+                                          rounded-3xl p-8 max-w-lg w-full border border-purple-500/20 
+                                          shadow-2xl shadow-purple-500/10 pointer-events-auto">
                                 {/* Close button */}
                                 <button
                                     onClick={closePopup}
@@ -142,9 +142,9 @@ export default function NonTechDivisions() {
                                 {/* Division Info */}
                                 <div className="text-center space-y-4">
                                     <h3 className="text-3xl font-bold text-white">{selectedDivision.title}</h3>
-                                    <p className="text-cyan-400 font-medium text-lg">{selectedDivision.shortDesc}</p>
+                                    <p className="text-purple-400 font-medium text-lg">{selectedDivision.shortDesc}</p>
 
-                                    <div className="h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent my-6"></div>
+                                    <div className="h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent my-6"></div>
 
                                     <p className="text-gray-300 text-base leading-relaxed">
                                         {selectedDivision.fullDesc}
@@ -153,7 +153,7 @@ export default function NonTechDivisions() {
                                     {selectedDivision.specs && (
                                         <div className="mt-6 p-4 bg-black/30 rounded-xl border border-white/5">
                                             <p className="text-gray-400 text-sm">
-                                                <span className="text-cyan-400 font-semibold">Info: </span>
+                                                <span className="text-purple-400 font-semibold">Info: </span>
                                                 {selectedDivision.specs}
                                             </p>
                                         </div>
@@ -164,10 +164,10 @@ export default function NonTechDivisions() {
                                 <div className="mt-8 flex justify-center">
                                     <button
                                         onClick={closePopup}
-                                        className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-cyan-600 
-                                                 rounded-full text-white font-semibold hover:from-cyan-400 
-                                                 hover:to-cyan-500 transition-all duration-300 
-                                                 shadow-lg shadow-cyan-500/30"
+                                        className="px-8 py-3 bg-gradient-to-r from-purple-500 to-purple-600 
+                                                 rounded-full text-white font-semibold hover:from-purple-400 
+                                                 hover:to-purple-500 transition-all duration-300 
+                                                 shadow-lg shadow-purple-500/30"
                                     >
                                         Tutup
                                     </button>
@@ -197,8 +197,8 @@ const DivisionCard = ({ division, onClick }: DivisionCardProps) => {
             whileTap={{ scale: 0.98 }}
             className="group relative h-[320px] w-[260px] md:h-[400px] md:w-[350px] flex-shrink-0 overflow-hidden rounded-3xl 
                        bg-gradient-to-br from-slate-800 to-slate-900 cursor-pointer
-                       border border-white/10 hover:border-cyan-500/30 transition-all duration-300
-                       shadow-xl hover:shadow-2xl hover:shadow-cyan-500/20"
+                       border border-white/10 hover:border-purple-500/30 transition-all duration-300
+                       shadow-xl hover:shadow-2xl hover:shadow-purple-500/20"
         >
             {/* Gradient overlay */}
             <div className={`absolute inset-0 ${division.accent} opacity-10 group-hover:opacity-20 transition-opacity`}></div>
@@ -213,7 +213,7 @@ const DivisionCard = ({ division, onClick }: DivisionCardProps) => {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">
+                <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-purple-300 transition-colors">
                     {division.title}
                 </h3>
 
@@ -229,7 +229,7 @@ const DivisionCard = ({ division, onClick }: DivisionCardProps) => {
 
                 {/* Hover indicator */}
                 <div className="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <div className="px-4 py-2 bg-cyan-500/20 text-cyan-400 rounded-full text-sm font-medium">
+                    <div className="px-4 py-2 bg-purple-500/20 text-purple-400 rounded-full text-sm font-medium">
                         Klik untuk detail →
                     </div>
                 </div>
@@ -237,7 +237,7 @@ const DivisionCard = ({ division, onClick }: DivisionCardProps) => {
 
             {/* Decorative elements */}
             <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-white/5 to-transparent rounded-full blur-3xl"></div>
-            <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-cyan-500/10 to-transparent rounded-full blur-2xl"></div>
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-purple-500/10 to-transparent rounded-full blur-2xl"></div>
         </motion.div>
     );
 };
