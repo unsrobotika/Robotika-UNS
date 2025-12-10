@@ -26,8 +26,8 @@ function Nav(){
             </div>
             <nav className='flex self-stretch w-4/6'>
                 <a className=' flex items-center hover:bg-gray-900 grow justify-center'>Home</a>
-                <a className=' flex items-center hover:bg-gray-900 grow justify-center'>Siapa Kita</a>
-                <a className=' flex items-center hover:bg-gray-900 grow justify-center'>Apa yang Kita Lakukan</a>
+                <a className=' flex items-center hover:bg-gray-900 grow justify-center'>Who we are</a>
+                <a className=' flex items-center hover:bg-gray-900 grow justify-center'>What we do</a>
                 <a className=' flex items-center hover:bg-gray-900 grow justify-center'>Pencapaian</a>
                 <a className=' flex items-center hover:bg-gray-900 grow justify-center'>Daftar</a>
                 
