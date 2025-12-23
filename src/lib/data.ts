@@ -778,6 +778,203 @@ export const MEDIA_PARTNERS: Sponsor[] = [
 ];
 
 // ===================================
+// NAVIGATION DATA
+// ===================================
+export interface NavItem {
+    name: string;
+    href: string;
+    isExternal?: boolean;
+}
+
+export const NAV_ITEMS: NavItem[] = [
+    { name: "Beranda", href: "#hero" },
+    { name: "Tentang Kami", href: "#philosophy" },
+    { name: "Divisi", href: "#divisions" },
+    { name: "Tim", href: "#team" },
+    { name: "Galeri", href: "#gallery" },
+    { name: "Blog", href: "#blog" },
+    { name: "FAQ", href: "#faq" },
+    { name: "Kontak", href: "#contact" },
+];
+
+export const REGISTER_LINK: NavItem = {
+    name: "Daftar Sekarang",
+    href: "https://uns.id/OpenRecruitmentRobotikaUNS",
+    isExternal: true,
+};
+
+// ===================================
+// FOOTER DATA
+// ===================================
+export const FOOTER_QUICK_LINKS: NavItem[] = [
+    { name: "Tentang Kami", href: "#philosophy" },
+    { name: "Divisi", href: "#divisions" },
+    { name: "Tim Robot", href: "#team" },
+    { name: "Galeri", href: "#gallery" },
+    { name: "Blog", href: "#blog" },
+    { name: "FAQ", href: "#faq" },
+];
+
+export const FOOTER_CONTENT = {
+    organizationName: "Robotika UNS",
+    tagline: "Dari Anggota Untuk Anggota, Mari Membangun Rumah Kita.",
+    description: "Unit Kegiatan Mahasiswa Robotika Universitas Sebelas Maret. Wadah pengembangan inovasi dan prestasi di bidang robotika.",
+    copyright: `© ${new Date().getFullYear()} Tim Robotika UNS. All rights reserved.`,
+    madeWithLove: "Dibuat dengan ❤️ oleh Tim Robotika UNS",
+};
+
+// ===================================
+// REGISTRATION SECTION DATA
+// ===================================
+export interface StatItem {
+    iconName: "users" | "trophy" | "cpu" | "sparkles";
+    value: string;
+    label: string;
+}
+
+export const REGISTRATION_CONTENT = {
+    badge: "Open Recruitment 2024/2025",
+    title: "Bergabung Bersama Kami",
+    subtitle: "Jadilah bagian dari keluarga besar Robotika UNS. Kembangkan skill, raih prestasi, dan ciptakan robot impianmu bersama kami!",
+    ctaButton: "Daftar Sekarang",
+    ctaLink: "https://uns.id/OpenRecruitmentRobotikaUNS",
+    secondaryButton: "Punya Pertanyaan?",
+    secondaryLink: "#faq",
+    note: "* Terbuka untuk seluruh mahasiswa aktif Universitas Sebelas Maret",
+    stats: [
+        { iconName: "users" as const, value: "50+", label: "Anggota Aktif" },
+        { iconName: "trophy" as const, value: "20+", label: "Prestasi" },
+        { iconName: "cpu" as const, value: "3", label: "Tim Robot" },
+        { iconName: "sparkles" as const, value: "8", label: "Divisi" },
+    ] as StatItem[],
+};
+
+// ===================================
+// HERO PARALLAX PRODUCTS
+// ===================================
+export interface HeroProduct {
+    title: string;
+    link: string;
+    thumbnail: string;
+}
+
+export const HERO_PRODUCTS: HeroProduct[] = [
+    {
+        title: "Robotika UNS",
+        link: "#",
+        thumbnail: "/images/hero-bg-placeholder.webp",
+    },
+    {
+        title: "Divisi Non-Teknis",
+        link: "#divisions",
+        thumbnail: "/images/placeholder.webp",
+    },
+    {
+        title: "Divisi Teknis",
+        link: "#divisions",
+        thumbnail: "/images/placeholder.webp",
+    },
+    {
+        title: "Werkudara",
+        link: "#team",
+        thumbnail: "/images/werkudara_bot.webp",
+    },
+    {
+        title: "Sambergeni",
+        link: "#team",
+        thumbnail: "/images/sambergeni_bot.webp",
+    },
+    {
+        title: "Sriwedari",
+        link: "#team",
+        thumbnail: "/images/sriwedari_bot.webp",
+    },
+    {
+        title: "Prestasi 2024",
+        link: "#",
+        thumbnail: "/images/placeholder.webp",
+    },
+    {
+        title: "Kegiatan Bonding",
+        link: "#",
+        thumbnail: "/images/placeholder.webp",
+    },
+    {
+        title: "Riset & Development",
+        link: "#",
+        thumbnail: "/images/placeholder.webp",
+    },
+    {
+        title: "Workshop Robotika",
+        link: "#",
+        thumbnail: "/images/placeholder.webp",
+    },
+    {
+        title: "Kontes Robot Indonesia",
+        link: "#",
+        thumbnail: "/images/placeholder.webp",
+    },
+    {
+        title: "Komunitas",
+        link: "#",
+        thumbnail: "/images/placeholder.webp",
+    },
+    {
+        title: "Inovasi Masa Depan",
+        link: "#",
+        thumbnail: "/images/placeholder.webp",
+    },
+    {
+        title: "Bergabung Bersama Kami",
+        link: "#",
+        thumbnail: "/images/placeholder.webp",
+    },
+    {
+        title: "Teknologi Canggih",
+        link: "#",
+        thumbnail: "/images/placeholder.webp",
+    },
+];
+
+// ===================================
+// SECTION TITLES
+// ===================================
+export const SECTION_TITLES = {
+    divisions: {
+        title: "Our Divisions",
+        subtitle: "Kenali divisi-divisi yang ada di Robotika UNS",
+        techTitle: "Divisi Teknis",
+        nonTechTitle: "Divisi Non-Teknis",
+    },
+    team: {
+        title: "Our Team",
+        subtitle: "Tim robot yang siap berkompetisi",
+    },
+    gallery: {
+        title: "Galeri Kegiatan",
+        subtitle: "Dokumentasi kegiatan dan momen berharga Robotika UNS",
+    },
+    blog: {
+        title: "Blog & Berita",
+        subtitle: "Artikel dan berita terbaru dari Robotika UNS",
+    },
+    faq: {
+        title: "Frequently Asked Questions",
+        subtitle: "Pertanyaan yang sering diajukan tentang Robotika UNS",
+    },
+    sponsors: {
+        title: "Sponsors & Partners",
+        subtitle: "Terima kasih kepada sponsor dan partner yang mendukung kami",
+        sponsorLabel: "Our Sponsors",
+        mediaPartnerLabel: "Media Partners",
+    },
+    contact: {
+        title: "Hubungi Kami",
+        subtitle: "Punya pertanyaan? Jangan ragu untuk menghubungi kami",
+    },
+};
+
+// ===================================
 // GOOGLE FORM LINKS
 // ===================================
 export const FORM_LINKS = {

@@ -5,29 +5,10 @@ import { m, AnimatePresence } from "motion/react";
 import { Menu, X, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { NAV_ITEMS, REGISTER_LINK } from "@/lib/data";
 
-interface NavItem {
-    name: string;
-    href: string;
-    isExternal?: boolean;
-}
-
-const navItems: NavItem[] = [
-    { name: "Beranda", href: "#hero" },
-    { name: "Tentang Kami", href: "#philosophy" },
-    { name: "Divisi", href: "#divisions" },
-    { name: "Tim", href: "#team" },
-    { name: "Galeri", href: "#gallery" },
-    { name: "Blog", href: "#blog" },
-    { name: "FAQ", href: "#faq" },
-    { name: "Kontak", href: "#contact" },
-];
-
-const registerLink = {
-    name: "Daftar Sekarang",
-    href: "https://uns.id/OpenRecruitmentRobotikaUNS",
-    isExternal: true,
-};
+const navItems = NAV_ITEMS;
+const registerLink = REGISTER_LINK;
 
 export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
@@ -80,8 +61,8 @@ export default function Header() {
             {/* Main Header */}
             <header
                 className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-                        ? "bg-slate-900/95 backdrop-blur-lg shadow-lg border-b border-white/5"
-                        : "bg-transparent"
+                    ? "bg-slate-900/95 backdrop-blur-lg shadow-lg border-b border-white/5"
+                    : "bg-transparent"
                     }`}
             >
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -92,11 +73,12 @@ export default function Header() {
                             className="flex items-center gap-3 group"
                             onClick={() => handleNavClick("#hero")}
                         >
-                            <div className="relative w-10 h-10 lg:w-12 lg:h-12 rounded-lg overflow-hidden ring-2 ring-blue-500/30 group-hover:ring-blue-500/50 transition-all">
+                            <div className="relative rounded-lg overflow-hidden ring-2 ring-blue-500/30 group-hover:ring-blue-500/50 transition-all">
                                 <Image
-                                    src="/MainLogo.jpg"
+                                    src="/MainLogo.webp"
                                     alt="Logo Robotika UNS"
-                                    fill
+                                    width={50}
+                                    height={50}
                                     className="object-cover"
                                     priority
                                 />
@@ -179,11 +161,12 @@ export default function Header() {
                             {/* Menu Header */}
                             <div className="flex items-center justify-between p-4 border-b border-white/10">
                                 <div className="flex items-center gap-3">
-                                    <div className="relative w-10 h-10 rounded-lg overflow-hidden ring-2 ring-blue-500/30">
+                                    <div className="relative rounded-lg overflow-hidden ring-2 ring-blue-500/30">
                                         <Image
-                                            src="/MainLogo.jpg"
+                                            src="/MainLogo.webp"
                                             alt="Logo Robotika UNS"
-                                            fill
+                                            width={40}
+                                            height={40}
                                             className="object-cover"
                                         />
                                     </div>

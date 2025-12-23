@@ -108,6 +108,8 @@ export const HeroParallax = ({
                                         className="object-cover"
                                         alt={product.title}
                                         priority={idx < 2}
+                                        fetchPriority={idx < 2 ? "high" : "auto"}
+                                        loading={idx < 2 ? "eager" : "lazy"}
                                     />
                                     <div className="absolute inset-0 bg-black/20"></div>
                                 </div>
@@ -277,6 +279,8 @@ export const ProductCard = ({
                     src={product.thumbnail}
                     fill
                     priority={priority}
+                    fetchPriority={priority ? "high" : "auto"}
+                    loading={priority ? "eager" : "lazy"}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 30rem"
                     quality={80}
                     className="object-cover object-center absolute inset-0"
