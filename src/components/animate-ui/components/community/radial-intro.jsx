@@ -1,6 +1,6 @@
 'use client';;
 import * as React from 'react';
-import { LayoutGroup, motion, useAnimate, delay } from 'motion/react';
+import { LayoutGroup, m, useAnimate, delay } from 'motion/react';
 
 const transition = {
   delay: 0,
@@ -85,20 +85,20 @@ function RadialIntro({
 
   return (
     <LayoutGroup>
-      <motion.div
+      <m.div
         ref={scope}
         className="relative overflow-visible"
         style={{ width: stageSize, height: stageSize }}
         initial={false}>
         {orbitItems.map((item, i) => (
-          <motion.div
+          <m.div
             key={item.id}
             data-arm
             className="will-change-transform absolute inset-0"
             style={{ zIndex: orbitItems.length - i }}
             data-angle={i * step}
             layoutId={`arm-${item.id}`}>
-            <motion.img
+            <m.img
               data-arm-image
               className="rounded-full object-fill absolute left-1/2 top-1/2 aspect-square translate -translate-x-1/2"
               style={{
@@ -110,9 +110,9 @@ function RadialIntro({
               alt={item.name}
               draggable={false}
               layoutId={`arm-img-${item.id}`} />
-          </motion.div>
+          </m.div>
         ))}
-      </motion.div>
+      </m.div>
     </LayoutGroup>
   );
 }

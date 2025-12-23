@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, easeInOut } from "motion/react";
+import Image from "next/image";
+import { m, easeInOut } from "motion/react";
 import { cn } from "@/lib/utils";
 
 interface FlipCardProps {
@@ -56,7 +57,7 @@ export function FlipCard({
             onMouseLeave={handleMouseLeave}
         >
             {/* FRONT */}
-            <motion.div
+            <m.div
                 className={cn(
                     "absolute inset-0 backface-hidden flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-8 text-center shadow-2xl",
                     frontClassName
@@ -66,9 +67,11 @@ export function FlipCard({
                 style={{ transformStyle: "preserve-3d" }}
             >
                 {image && (
-                    <img
+                    <Image
                         src={image}
                         alt={title}
+                        width={96}
+                        height={96}
                         className="mb-6 h-24 w-24 rounded-full object-cover shadow-lg border-2 border-white/20"
                     />
                 )}
@@ -85,10 +88,10 @@ export function FlipCard({
                     <span className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse"></span>
                     Hover to Reveal
                 </div>
-            </motion.div>
+            </m.div>
 
             {/* BACK */}
-            <motion.div
+            <m.div
                 className={cn(
                     "absolute inset-0 backface-hidden flex flex-col items-center justify-center rounded-2xl border border-cyan-500/20 bg-slate-950 p-8 text-center shadow-2xl shadow-cyan-900/10",
                     backClassName
@@ -104,7 +107,7 @@ export function FlipCard({
                 <p className="text-lg leading-relaxed text-slate-300 font-medium">
                     &quot;{description}&quot;
                 </p>
-            </motion.div>
+            </m.div>
         </div>
     );
 }
