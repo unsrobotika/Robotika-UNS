@@ -4,16 +4,9 @@ import { m } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { Mail, Phone, MapPin, Instagram, Youtube, Linkedin, ArrowUp, Heart } from "lucide-react";
-import { CONTACT_INFO } from "@/lib/data";
+import { CONTACT_INFO, FOOTER_QUICK_LINKS, FOOTER_CONTENT, REGISTER_LINK } from "@/lib/data";
 
-const quickLinks = [
-    { name: "Beranda", href: "#hero" },
-    { name: "Tentang Kami", href: "#philosophy" },
-    { name: "Divisi", href: "#divisions" },
-    { name: "Tim", href: "#team" },
-    { name: "Galeri", href: "#gallery" },
-    { name: "FAQ", href: "#faq" },
-];
+const quickLinks = FOOTER_QUICK_LINKS;
 
 const socialIcons: Record<string, React.ReactNode> = {
     instagram: <Instagram className="w-5 h-5" />,
@@ -41,21 +34,22 @@ export default function Footer() {
                         className="lg:col-span-1"
                     >
                         <div className="flex items-center gap-3 mb-4">
-                            <div className="relative w-12 h-12 rounded-lg overflow-hidden ring-2 ring-blue-500/30">
+                            <div className="relative rounded-lg overflow-hidden ring-2 ring-blue-500/30">
                                 <Image
-                                    src="/MainLogo.jpg"
+                                    src="/MainLogo.webp"
                                     alt="Logo Robotika UNS"
-                                    fill
+                                    width={48}
+                                    height={48}
                                     className="object-cover"
                                 />
                             </div>
                             <div>
-                                <h3 className="text-lg font-bold text-white">Robotika UNS</h3>
+                                <h3 className="text-lg font-bold text-white">{FOOTER_CONTENT.organizationName}</h3>
                                 <p className="text-xs text-blue-400">Universitas Sebelas Maret</p>
                             </div>
                         </div>
                         <p className="text-slate-400 text-sm mb-4">
-                            Dari Anggota Untuk Anggota. Mari Membangun Rumah Kita Bersama.
+                            {FOOTER_CONTENT.tagline}
                         </p>
                         {/* Social Media */}
                         <div className="flex gap-2">
@@ -144,12 +138,12 @@ export default function Footer() {
                             Tertarik menjadi bagian dari keluarga Robotika UNS?
                         </p>
                         <a
-                            href="https://uns.id/OpenRecruitmentRobotikaUNS"
+                            href={REGISTER_LINK.href}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-cyan-500 text-white text-sm font-semibold rounded-lg hover:shadow-lg hover:shadow-blue-500/25 transition-all"
                         >
-                            Daftar Sekarang
+                            {REGISTER_LINK.name}
                         </a>
                     </m.div>
                 </div>
@@ -158,8 +152,8 @@ export default function Footer() {
                 <div className="border-t border-white/5 mt-10 pt-6">
                     <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                         {/* Copyright */}
-                        <p className="text-slate-500 text-sm text-center sm:text-left">
-                            © {currentYear} Tim Robotika UNS. All rights reserved.
+                        <p className="text-slate-400 text-sm text-center sm:text-left">
+                            {FOOTER_CONTENT.copyright}
                         </p>
 
                         {/* Back to top */}

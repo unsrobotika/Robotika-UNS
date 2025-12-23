@@ -2,13 +2,15 @@
 
 import { m } from "motion/react";
 import { ArrowRight, Users, Trophy, Cpu, Sparkles } from "lucide-react";
+import { REGISTRATION_CONTENT, StatItem } from "@/lib/data";
 
-const stats = [
-    { icon: Users, value: "50+", label: "Anggota Aktif" },
-    { icon: Trophy, value: "20+", label: "Prestasi" },
-    { icon: Cpu, value: "3", label: "Tim Robot" },
-    { icon: Sparkles, value: "8", label: "Divisi" },
-];
+// Map icon names to actual components
+const iconMap = {
+    users: Users,
+    trophy: Trophy,
+    cpu: Cpu,
+    sparkles: Sparkles,
+};
 
 export default function Registration() {
     return (
@@ -33,42 +35,44 @@ export default function Registration() {
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                         </span>
-                        <span className="text-sm text-blue-300 font-medium">Open Recruitment 2024/2025</span>
+                        <span className="text-sm text-blue-300 font-medium">{REGISTRATION_CONTENT.badge}</span>
                     </div>
 
                     {/* Main Content */}
                     <h2 className="text-3xl md:text-5xl font-bold mb-4">
                         <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                            Bergabung Bersama Kami
+                            {REGISTRATION_CONTENT.title}
                         </span>
                     </h2>
                     <p className="text-lg text-slate-300 max-w-2xl mx-auto mb-8">
-                        Jadilah bagian dari keluarga besar Robotika UNS. Kembangkan skill,
-                        raih prestasi, dan ciptakan robot impianmu bersama kami!
+                        {REGISTRATION_CONTENT.subtitle}
                     </p>
 
                     {/* Stats */}
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-                        {stats.map((stat, index) => (
-                            <m.div
-                                key={stat.label}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.3, delay: index * 0.1 }}
-                                className="bg-slate-800/50 rounded-xl p-4 border border-white/5"
-                            >
-                                <stat.icon className="w-6 h-6 text-blue-400 mx-auto mb-2" />
-                                <p className="text-2xl font-bold text-white">{stat.value}</p>
-                                <p className="text-sm text-slate-400">{stat.label}</p>
-                            </m.div>
-                        ))}
+                        {REGISTRATION_CONTENT.stats.map((stat: StatItem, index: number) => {
+                            const IconComponent = iconMap[stat.iconName];
+                            return (
+                                <m.div
+                                    key={stat.label}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                                    className="bg-slate-800/50 rounded-xl p-4 border border-white/5"
+                                >
+                                    <IconComponent className="w-6 h-6 text-blue-400 mx-auto mb-2" />
+                                    <p className="text-2xl font-bold text-white">{stat.value}</p>
+                                    <p className="text-sm text-slate-400">{stat.label}</p>
+                                </m.div>
+                            );
+                        })}
                     </div>
 
                     {/* CTA Buttons */}
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                         <m.a
-                            href="https://uns.id/OpenRecruitmentRobotikaUNS"
+                            href={REGISTRATION_CONTENT.ctaLink}
                             target="_blank"
                             rel="noopener noreferrer"
                             initial={{ opacity: 0, y: 20 }}
@@ -77,19 +81,19 @@ export default function Registration() {
                             transition={{ duration: 0.5, delay: 0.2 }}
                             className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold rounded-xl hover:shadow-2xl hover:shadow-blue-500/30 hover:-translate-y-1 transition-all duration-300"
                         >
-                            <span>Daftar Sekarang</span>
+                            <span>{REGISTRATION_CONTENT.ctaButton}</span>
                             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         </m.a>
 
                         <m.a
-                            href="#faq"
+                            href={REGISTRATION_CONTENT.secondaryLink}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: 0.3 }}
                             className="inline-flex items-center gap-2 px-6 py-3 text-slate-300 font-medium hover:text-white transition-colors"
                         >
-                            Punya Pertanyaan?
+                            {REGISTRATION_CONTENT.secondaryButton}
                         </m.a>
                     </div>
 
@@ -99,9 +103,9 @@ export default function Registration() {
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.4 }}
-                        className="mt-8 text-sm text-slate-500"
+                        className="mt-8 text-sm text-slate-400"
                     >
-                        * Terbuka untuk seluruh mahasiswa aktif Universitas Sebelas Maret
+                        {REGISTRATION_CONTENT.note}
                     </m.p>
                 </m.div>
             </div>

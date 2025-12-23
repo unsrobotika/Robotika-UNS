@@ -19,7 +19,6 @@ Website ini dibangun dengan modern tech stack untuk memberikan pengalaman terbai
 - **Smooth Animations** - Animasi halus menggunakan Framer Motion
 - **Glassmorphism Effects** - Efek blur dan transparansi modern
 - **Custom Scrollbar** - Scrollbar yang match dengan tema
-- **Cursor Trail Effect** - Efek cursor interaktif
 
 ### 📱 Navigation
 - **Floating Navigation** - Navbar yang mengikuti scroll
@@ -29,9 +28,9 @@ Website ini dibangun dengan modern tech stack untuk memberikan pengalaman terbai
 
 ### 📄 Sections
 1. **Hero** - Parallax hero section dengan gambar produk/kegiatan
-2. **Philosophy** - Visi, Misi, dan filosofi organisasi
-3. **Divisions** - Divisi teknis dan non-teknis dengan modal detail
-4. **Team** - Tim robot (Werkudara, Sambergeni, Sriwedari)
+2. **About Us** - Tentang kami, Visi & Misi dengan flip cards
+3. **Divisions** - Divisi teknis dan non-teknis dengan bento modal detail
+4. **Team** - Tim robot (Werkudara, Sambergeni, Sriwedari) dengan layout radial
 5. **Gallery** - Galeri foto dengan filter kategori dan lightbox
 6. **Blog** - Artikel dan berita terbaru
 7. **FAQ** - Pertanyaan umum dengan accordion
@@ -39,12 +38,14 @@ Website ini dibangun dengan modern tech stack untuk memberikan pengalaman terbai
 9. **Registration** - CTA pendaftaran anggota baru
 10. **Contact** - Informasi kontak dan social media
 11. **Footer** - Links, kontak, dan social media
+12. **AI Chat** - Chatbot AI untuk menjawab pertanyaan pengunjung
 
 ### 🔧 Technical
 - **SEO Optimized** - Meta tags, OG tags, dan structured data
 - **Performance** - Dynamic imports dan code splitting
 - **Accessibility** - Alt text, aria labels, semantic HTML
 - **TypeScript** - Type safety untuk development
+- **Centralized Data** - Semua konten text di `src/lib/data.ts`
 
 ---
 
@@ -95,7 +96,7 @@ src/
 │   ├── sections/                 # Section components
 │   │   ├── Header.tsx            # Navbar responsive + hamburger menu
 │   │   ├── Hero.tsx              # Hero parallax section
-│   │   ├── Philosophy.tsx        # Visi & misi dengan flip cards
+│   │   ├── Philosophy.tsx        # About Us, Visi & Misi flip cards
 │   │   ├── UnifiedDivisions.tsx  # Carousel divisi teknis & non-teknis
 │   │   ├── TeamRadial.tsx        # Tim robot dengan layout radial
 │   │   ├── Gallery.tsx           # Galeri foto dengan lightbox
@@ -105,12 +106,13 @@ src/
 │   │   ├── Registration.tsx      # CTA pendaftaran
 │   │   ├── Contact.tsx           # Informasi kontak
 │   │   ├── Footer.tsx            # Footer dengan links
-│   │   └── AIChat.tsx            # AI chatbot (opsional)
+│   │   └── AIChat.tsx            # AI chatbot
 │   │
 │   ├── ui/                       # Reusable UI components
 │   │   ├── FloatingNavbar.tsx    # Floating navigation
 │   │   ├── HeroParallax.tsx      # Parallax effect untuk hero
-│   │   ├── CursorTrails.tsx      # Cursor effect
+│   │   ├── FlipCard.tsx          # Flip card untuk visi misi
+│   │   ├── ScrollReveal.tsx      # Scroll reveal animation
 │   │   └── ...
 │   │
 │   ├── providers/                # Context providers
@@ -119,11 +121,10 @@ src/
 │   └── SmoothScroll.tsx          # Lenis smooth scroll wrapper
 │
 ├── lib/
-│   ├── data.ts                   # Data content (EDIT INI UNTUK MENGUBAH KONTEN)
+│   ├── data.ts                   # ⭐ SEMUA DATA KONTEN WEBSITE
 │   └── utils.ts                  # Utility functions
 │
 └── hooks/                        # Custom React hooks
-    └── ...
 
 public/
 ├── MainLogo.jpg                  # Logo utama Robotika UNS
@@ -131,6 +132,7 @@ public/
 │   ├── placeholder.webp          # Placeholder image
 │   ├── werkudara_bot.webp        # Foto robot Werkudara
 │   ├── sambergeni_bot.webp       # Foto robot Sambergeni
+│   ├── sriwedari_bot.webp        # Foto robot Sriwedari
 │   └── ...
 └── favicon.ico                   # Favicon
 ```
@@ -139,13 +141,42 @@ public/
 
 ## 📝 Cara Mengubah Konten
 
-Semua konten website terpusat di file `src/lib/data.ts`. Edit file ini untuk mengubah:
+**Semua konten website terpusat di file `src/lib/data.ts`.** Edit file ini untuk mengubah seluruh teks dan data yang tampil di website.
 
-### Hero & Philosophy
+### 🧭 Navigation & Header
+```typescript
+export const NAV_ITEMS = [
+    { name: "Beranda", href: "#hero" },
+    { name: "Tentang Kami", href: "#philosophy" },
+    // ... tambah/edit menu navigasi
+];
+
+export const REGISTER_LINK = {
+    name: "Daftar Sekarang",
+    href: "https://uns.id/OpenRecruitmentRobotikaUNS",
+    isExternal: true,
+};
+```
+
+### 🏠 Hero Section
 ```typescript
 export const HERO_CONTENT = {
     title: "ROBOTIKA UNS",
-    subtitle: "Tagline kamu di sini"
+    subtitle: "Dari Anggota Untuk Anggota, Mari Membangun Rumah Kita."
+};
+
+export const HERO_PRODUCTS = [
+    { title: "Robotika UNS", link: "#", thumbnail: "/images/hero-bg.webp" },
+    // ... tambah gambar parallax
+];
+```
+
+### 📖 About Us & Philosophy
+```typescript
+export const ABOUT_US_CONTENT = {
+    title: "About Us",
+    description: "Deskripsi organisasi...",
+    subtitle: "Kenali lebih dekat keluarga besar Robotika UNS"
 };
 
 export const PHILOSOPHY_CONTENT = {
@@ -154,36 +185,79 @@ export const PHILOSOPHY_CONTENT = {
 };
 ```
 
-### Divisi
+### 🔧 Divisi
 ```typescript
-export const NON_TECH_DIVISIONS = [...];  // Divisi non-teknis
-export const TECH_DIVISIONS = [...];       // Divisi teknis
+export const NON_TECH_DIVISIONS = [...];  // HR, Humas, Sekretaris, Bendahara
+export const TECH_DIVISIONS = [...];       // Desain, Elektronis, Pemrograman, R&D
 ```
 
-### Tim Robot
+### 🤖 Tim Robot
 ```typescript
 export const TEAMS = [
-    { name: "Werkudara", ... },
-    { name: "Sambergeni", ... },
-    { name: "Sriwedari", ... }
+    { name: "Werkudara", desc: "Robot ABU", ... },
+    { name: "Sambergeni", desc: "Robot SAR", ... },
+    { name: "Sriwedari", desc: "Robot Tari Humanoid", ... }
 ];
 ```
 
-### Galeri, Blog, FAQ
+### 🖼️ Galeri, Blog, FAQ
 ```typescript
 export const GALLERY_ITEMS = [...];   // Item galeri
 export const BLOG_POSTS = [...];      // Artikel blog
 export const FAQ_ITEMS = [...];       // Pertanyaan FAQ
 ```
 
-### Kontak & Sponsor
+### 📞 Kontak & Sponsor
 ```typescript
-export const CONTACT_INFO = {...};    // Info kontak
+export const CONTACT_INFO = {
+    email: "robotika@uns.ac.id",
+    whatsapp: "+62 812-3456-7890",
+    location: "Laboratorium Robotika UNS",
+    address: "...",
+    socialMedia: [...]
+};
+
 export const SPONSORS = [...];        // Daftar sponsor
 export const MEDIA_PARTNERS = [...];  // Media partner
 ```
 
-### Link Google Form
+### 📋 Registration Section
+```typescript
+export const REGISTRATION_CONTENT = {
+    badge: "Open Recruitment 2024/2025",
+    title: "Bergabung Bersama Kami",
+    subtitle: "Jadilah bagian dari keluarga besar...",
+    ctaButton: "Daftar Sekarang",
+    ctaLink: "https://uns.id/OpenRecruitmentRobotikaUNS",
+    stats: [
+        { iconName: "users", value: "50+", label: "Anggota Aktif" },
+        // ...
+    ]
+};
+```
+
+### 🏷️ Section Titles
+```typescript
+export const SECTION_TITLES = {
+    divisions: { title: "Our Divisions", subtitle: "..." },
+    team: { title: "Our Team", subtitle: "..." },
+    gallery: { title: "Galeri Kegiatan", subtitle: "..." },
+    // ... semua judul section
+};
+```
+
+### 🔗 Footer Content
+```typescript
+export const FOOTER_CONTENT = {
+    organizationName: "Robotika UNS",
+    tagline: "Dari Anggota Untuk Anggota...",
+    copyright: "© 2024 Tim Robotika UNS. All rights reserved.",
+};
+
+export const FOOTER_QUICK_LINKS = [...]; // Link navigasi footer
+```
+
+### 📝 Form Links
 ```typescript
 export const FORM_LINKS = {
     registration: "https://uns.id/OpenRecruitmentRobotikaUNS",

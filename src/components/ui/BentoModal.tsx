@@ -175,7 +175,7 @@ export default function BentoModal({
                                             src={bento.image || "/images/placeholder.webp"}
                                             alt={division.title}
                                             fill
-                                            sizes="(max-width: 768px) 100vw, 33vw"
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                             loading="lazy"
                                             quality={75}
                                             className="object-cover rounded-xl"
