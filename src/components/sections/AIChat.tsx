@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { m, AnimatePresence } from "motion/react";
 import { X, Send, MessageCircle, Bot, User } from "lucide-react";
-import SiriOrb from "@/components/smoothui/siri-orb";
+import { VscHubot } from "react-icons/vsc";
 
 interface Message {
     id: number;
@@ -19,20 +19,93 @@ const getAIResponse = async (userMessage: string): Promise<string> => {
     // Response berdasarkan keyword
     const lowerMsg = userMessage.toLowerCase();
 
-    if (lowerMsg.includes("robotika") || lowerMsg.includes("robot")) {
-        return "Robotika UNS adalah tim robot terbaik di Universitas Sebelas Maret! Kami memiliki 3 tim kompetisi: Werkudara (Robot ABU), Sambergeni (Robot SAR), dan Sriwedari (Robot Tari Humanoid).";
-    }
-    if (lowerMsg.includes("divisi") || lowerMsg.includes("division")) {
-        return "Kami memiliki 4 divisi Non-Teknis (HR, Humas, Sekretaris, Bendahara) dan 4 divisi Teknis (Desain & Manufaktur, Elektronis, Pemrograman, Riset & Pengembangan).";
-    }
-    if (lowerMsg.includes("bergabung") || lowerMsg.includes("join") || lowerMsg.includes("daftar")) {
-        return "Untuk bergabung dengan Robotika UNS, kamu bisa mengikuti open recruitment yang biasanya dibuka di awal semester. Pantau terus media sosial kami untuk info terbaru!";
-    }
-    if (lowerMsg.includes("halo") || lowerMsg.includes("hai") || lowerMsg.includes("hello")) {
-        return "Halo! 👋 Selamat datang di Robotika UNS. Ada yang bisa saya bantu hari ini?";
+    // Salam
+    if (lowerMsg.includes("halo") || lowerMsg.includes("hai") || lowerMsg.includes("hello") || lowerMsg.includes("hi")) {
+        return "Halo! 👋 Selamat datang di Robotika UNS. Ada yang bisa saya bantu hari ini? Kamu bisa bertanya tentang tim, divisi, kompetisi, atau cara bergabung!";
     }
 
-    return "Terima kasih atas pertanyaannya! Untuk informasi lebih lanjut tentang Robotika UNS, silakan tanyakan tentang tim, divisi, atau cara bergabung. 🤖";
+    // Info umum Robotika
+    if (lowerMsg.includes("robotika") || lowerMsg.includes("robot")) {
+        return "Robotika UNS adalah tim robot terbaik di Universitas Sebelas Maret! Kami memiliki 3 tim kompetisi: Werkudara (Robot ABU), Sambergeni (Robot SAR), dan Sriwedari (Robot Tari Humanoid). 🤖";
+    }
+
+    // Info tim Werkudara
+    if (lowerMsg.includes("werkudara") || lowerMsg.includes("abu")) {
+        return "🔴 Tim Werkudara adalah tim Robot ABU (Asia-Pacific Broadcasting Union) kami! Tim ini berkompetisi di ajang ABU Robocon yang merupakan kompetisi robot tingkat Asia-Pasifik. Werkudara selalu berinovasi untuk menghadapi tema berbeda setiap tahunnya.";
+    }
+
+    // Info tim Sambergeni
+    if (lowerMsg.includes("sambergeni") || lowerMsg.includes("sar")) {
+        return "🟢 Tim Sambergeni adalah tim Robot SAR (Search and Rescue) kami! Tim ini fokus pada pengembangan robot penyelamat yang dapat beroperasi di medan bencana. Robot SAR dilengkapi sensor dan sistem navigasi canggih untuk misi pencarian dan penyelamatan.";
+    }
+
+    // Info tim Sriwedari
+    if (lowerMsg.includes("sriwedari") || lowerMsg.includes("tari") || lowerMsg.includes("humanoid")) {
+        return "💃 Tim Sriwedari adalah tim Robot Tari Humanoid kami! Tim ini mengembangkan robot humanoid yang dapat menari dengan gerakan tradisional Indonesia. Menggabungkan teknologi robotik dengan seni budaya Nusantara!";
+    }
+
+    // Info divisi
+    if (lowerMsg.includes("divisi") || lowerMsg.includes("division")) {
+        return "Kami memiliki 8 divisi:\n\n📋 Non-Teknis:\n• HR - Pengembangan SDM\n• Humas - Hubungan Masyarakat\n• Sekretaris - Administrasi\n• Bendahara - Keuangan\n\n⚙️ Teknis:\n• Desain & Manufaktur\n• Elektronis\n• Pemrograman\n• Riset & Pengembangan";
+    }
+
+    // Info cara bergabung
+    if (lowerMsg.includes("bergabung") || lowerMsg.includes("join") || lowerMsg.includes("daftar") || lowerMsg.includes("rekrutmen") || lowerMsg.includes("recruitment")) {
+        return "📝 Untuk bergabung dengan Robotika UNS:\n\n1. Ikuti open recruitment di awal semester ganjil\n2. Daftar melalui link yang akan dishare di media sosial\n3. Ikuti seleksi (tes tulis & wawancara)\n4. Training untuk member baru\n\nPantau terus Instagram @robotika_uns untuk info terbaru!";
+    }
+
+    // Info prestasi
+    if (lowerMsg.includes("prestasi") || lowerMsg.includes("achievement") || lowerMsg.includes("juara") || lowerMsg.includes("menang") || lowerMsg.includes("award")) {
+        return "🏆 Prestasi Robotika UNS:\n\n• ABU Robocon - Multiple achievements\n• Kontes Robot Indonesia (KRI) - Berbagai kategori\n• Robot SAR tingkat nasional\n• Robot Tari tingkat nasional\n\nKami terus berprestasi di tingkat regional, nasional, dan internasional!";
+    }
+
+    // Info kontak
+    if (lowerMsg.includes("kontak") || lowerMsg.includes("contact") || lowerMsg.includes("hubungi") || lowerMsg.includes("email") || lowerMsg.includes("sosmed")) {
+        return "📱 Hubungi Kami:\n\n• Instagram: @robotika_uns\n• Email: robotika@uns.ac.id\n• Website: robotika.uns.ac.id\n\nJangan ragu untuk menghubungi kami jika ada pertanyaan!";
+    }
+
+    // Info lokasi
+    if (lowerMsg.includes("lokasi") || lowerMsg.includes("alamat") || lowerMsg.includes("tempat") || lowerMsg.includes("basecamp") || lowerMsg.includes("markas")) {
+        return "📍 Lokasi Kami:\n\nBasecamp Robotika UNS berlokasi di Gedung Teknik Elektro, Fakultas Teknik, Universitas Sebelas Maret, Surakarta.\n\nKami juga memiliki workshop untuk kegiatan manufaktur dan pengembangan robot.";
+    }
+
+    // Info kompetisi
+    if (lowerMsg.includes("kompetisi") || lowerMsg.includes("kontes") || lowerMsg.includes("lomba") || lowerMsg.includes("kri")) {
+        return "🎯 Kompetisi yang kami ikuti:\n\n• ABU Robocon (Asia-Pasifik)\n• KRI - Kontes Robot Indonesia\n• KRSRI - Kontes Robot SAR Indonesia\n• KRTMI - Kontes Robot Tari & Musik Indonesia\n\nSetiap tahun kami berpartisipasi di berbagai ajang bergengsi!";
+    }
+
+    // Info program/kegiatan
+    if (lowerMsg.includes("program") || lowerMsg.includes("kegiatan") || lowerMsg.includes("aktivitas") || lowerMsg.includes("event")) {
+        return "📅 Program & Kegiatan:\n\n• Workshop rutin internal\n• Pelatihan teknis (programming, elektronik, mekanik)\n• Study tour & kunjungan industri\n• Robotik Goes to School\n• Open House untuk mahasiswa baru\n• Sharing session dengan alumni";
+    }
+
+    // Info sponsor/partnership
+    if (lowerMsg.includes("sponsor") || lowerMsg.includes("partner") || lowerMsg.includes("kerjasama") || lowerMsg.includes("donasi")) {
+        return "🤝 Kerjasama & Partnership:\n\nKami terbuka untuk kerjasama dengan berbagai pihak! Bentuk kerjasama:\n• Sponsorship tim\n• Partnership industri\n• Kolaborasi riset\n• CSR program\n\nHubungi tim Humas kami untuk informasi lebih lanjut!";
+    }
+
+    // Info visi misi
+    if (lowerMsg.includes("visi") || lowerMsg.includes("misi") || lowerMsg.includes("tujuan") || lowerMsg.includes("goal")) {
+        return "🎯 Visi & Misi Robotika UNS:\n\n📌 Visi:\nMenjadi tim robotika terdepan yang berprestasi di tingkat nasional dan internasional.\n\n📌 Misi:\n• Mengembangkan teknologi robot inovatif\n• Membangun SDM yang kompeten\n• Berkontribusi untuk kemajuan robotika Indonesia";
+    }
+
+    // Info sejarah
+    if (lowerMsg.includes("sejarah") || lowerMsg.includes("berdiri") || lowerMsg.includes("awal") || lowerMsg.includes("history")) {
+        return "📜 Sejarah Robotika UNS:\n\nRobotika UNS didirikan sebagai wadah pengembangan minat dan bakat mahasiswa di bidang robotika. Sejak awal berdiri, tim ini terus berkembang dan menorehkan berbagai prestasi di ajang kompetisi robot nasional dan internasional.";
+    }
+
+    // Info syarat bergabung
+    if (lowerMsg.includes("syarat") || lowerMsg.includes("requirement") || lowerMsg.includes("kriteria")) {
+        return "✅ Syarat Bergabung:\n\n• Mahasiswa aktif UNS\n• Memiliki minat di bidang robotika\n• Berkomitmen dan mau belajar\n• Bisa bekerja dalam tim\n• Tidak wajib punya pengalaman sebelumnya!\n\nKami akan melatih dari dasar untuk member baru 💪";
+    }
+
+    // Terima kasih
+    if (lowerMsg.includes("terima kasih") || lowerMsg.includes("thanks") || lowerMsg.includes("makasih") || lowerMsg.includes("thx")) {
+        return "Sama-sama! 😊 Senang bisa membantu. Jangan ragu untuk bertanya lagi jika ada hal lain yang ingin kamu ketahui tentang Robotika UNS!";
+    }
+
+    // Default response
+    return "Terima kasih atas pertanyaannya! 🤖\n\nKamu bisa bertanya tentang:\n• Tim (Werkudara, Sambergeni, Sriwedari)\n• Divisi-divisi kami\n• Cara bergabung\n• Prestasi & kompetisi\n• Kontak & lokasi\n\nSilakan tanya apa saja tentang Robotika UNS!";
 };
 
 export default function AIChat() {
@@ -81,7 +154,7 @@ export default function AIChat() {
     return (
         <>
             {/* Floating Button - Kanan Bawah */}
-            <motion.button
+            <m.button
                 onClick={() => setIsOpen(true)}
                 className={`fixed bottom-6 right-6 z-50 p-4 rounded-full 
                            bg-gradient-to-r from-cyan-500 to-cyan-600 
@@ -91,15 +164,15 @@ export default function AIChat() {
                 whileTap={{ scale: 0.95 }}
                 aria-label="Open AI Chat"
             >
-                <SiriOrb size="32px" className="" colors={{ bg: "transparent" }} />
-            </motion.button>
+                <VscHubot className="text-white" size={28} />
+            </m.button>
 
             {/* Chat Modal */}
             <AnimatePresence>
                 {isOpen && (
                     <>
                         {/* Backdrop */}
-                        <motion.div
+                        <m.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
@@ -108,7 +181,7 @@ export default function AIChat() {
                         />
 
                         {/* Chat Window */}
-                        <motion.div
+                        <m.div
                             initial={{ opacity: 0, scale: 0.9, y: 20 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -122,7 +195,7 @@ export default function AIChat() {
                             <div className="flex items-center justify-between p-4 border-b border-white/10">
                                 <div className="flex items-center gap-3">
                                     <div className="p-2 rounded-full bg-cyan-500/20">
-                                        <SiriOrb size="24px" className="" colors={{}} />
+                                        <VscHubot className="text-cyan-400" size={20} />
                                     </div>
                                     <div>
                                         <h3 className="text-white font-semibold">Robotika AI</h3>
@@ -149,7 +222,7 @@ export default function AIChat() {
                                 )}
 
                                 {messages.map((message) => (
-                                    <motion.div
+                                    <m.div
                                         key={message.id}
                                         initial={{ opacity: 0, y: 10 }}
                                         animate={{ opacity: 1, y: 0 }}
@@ -174,12 +247,12 @@ export default function AIChat() {
                                                 {message.content}
                                             </div>
                                         </div>
-                                    </motion.div>
+                                    </m.div>
                                 ))}
 
                                 {/* Loading indicator */}
                                 {isLoading && (
-                                    <motion.div
+                                    <m.div
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
                                         className="flex justify-start"
@@ -191,7 +264,7 @@ export default function AIChat() {
                                                 <span className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce" style={{ animationDelay: "300ms" }}></span>
                                             </div>
                                         </div>
-                                    </motion.div>
+                                    </m.div>
                                 )}
                             </div>
 
@@ -222,7 +295,7 @@ export default function AIChat() {
                                     </button>
                                 </div>
                             </form>
-                        </motion.div>
+                        </m.div>
                     </>
                 )}
             </AnimatePresence>

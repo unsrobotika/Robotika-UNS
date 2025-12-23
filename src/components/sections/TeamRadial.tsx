@@ -2,22 +2,10 @@
 
 import * as React from 'react';
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
 import { RadialIntro } from '@/components/animate-ui/components/community/radial-intro';
-import { TEAMS } from '@/lib/data';
-import { X } from 'lucide-react';
-
-// Definisikan tipe untuk item team
-interface TeamItem {
-    id: string;
-    name: string;
-    logo: string;
-    image: string;
-    desc: string;
-    fullDesc: string;
-    specs: string;
-    src?: string; // untuk RadialIntro
-}
+import { TEAMS, TeamItem } from '@/lib/data';
+import TeamBentoModal from '@/components/ui/TeamBentoModal';
+import ScrollReveal from '@/components/ui/ScrollReveal';
 
 // Transform data TEAMS ke format yang cocok untuk RadialIntro
 const orbitItems = TEAMS.map((team) => ({
@@ -28,6 +16,7 @@ const orbitItems = TEAMS.map((team) => ({
     desc: team.desc,
     fullDesc: team.fullDesc,
     specs: team.specs,
+    bentoContent: team.bentoContent,
 }));
 
 export default function TeamRadial() {
@@ -36,9 +25,9 @@ export default function TeamRadial() {
 
     // Handler untuk klik pada orbit item
     const handleTeamClick = (teamId: string) => {
-        const team = orbitItems.find((t) => t.id === teamId);
+        const team = TEAMS.find((t) => t.id === teamId);
         if (team) {
-            setSelectedTeam(team as TeamItem);
+            setSelectedTeam(team);
             setIsPopupOpen(true);
         }
     };
@@ -56,12 +45,18 @@ export default function TeamRadial() {
             {/* Content */}
             <div className="relative z-10 flex flex-col items-center gap-12">
                 {/* Title */}
-                <div className="text-center">
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                        OUR <span className="text-[--color-brand-cyan]">TEAM</span>
-                    </h2>
-                    <p className="text-xl text-gray-400">Tim Kompetisi Robot Indonesia</p>
-                </div>
+                <ScrollReveal>
+                    <div className="text-center">
+                        <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                            <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                                Our Team
+                            </span>
+                        </h2>
+                        <p className="text-slate-400 max-w-2xl mx-auto">
+                            Tim Kompetisi Robot Indonesia
+                        </p>
+                    </div>
+                </ScrollReveal>
 
                 {/* Radial Orbit Container */}
                 <div className="relative flex items-center justify-center">
@@ -120,91 +115,13 @@ export default function TeamRadial() {
                 </div>
             </div>
 
-            {/* Popup Modal */}
-            <AnimatePresence>
-                {isPopupOpen && selectedTeam && (
-                    <>
-                        {/* Backdrop */}
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            onClick={closePopup}
-                            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
-                        />
-
-                        {/* Modal Content */}
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.9, y: 50 }}
-                            animate={{ opacity: 1, scale: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.9, y: 50 }}
-                            transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                            className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none"
-                        >
-                            <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 
-                                          rounded-3xl p-8 max-w-lg w-full border border-cyan-500/20 
-                                          shadow-2xl shadow-cyan-500/10 pointer-events-auto">
-                                {/* Close button */}
-                                <button
-                                    onClick={closePopup}
-                                    className="absolute top-4 right-4 p-2 rounded-full bg-white/10 
-                                             hover:bg-white/20 transition-colors text-white"
-                                    aria-label="Close popup"
-                                >
-                                    <X size={20} />
-                                </button>
-
-                                {/* Team Logo */}
-                                <div className="flex justify-center mb-6">
-                                    <div className="w-24 h-24 rounded-full bg-gradient-to-br from-cyan-500/20 to-purple-500/20 
-                                                  p-1 ring-2 ring-cyan-500/30">
-                                        <img
-                                            src={selectedTeam.src || selectedTeam.logo}
-                                            alt={selectedTeam.name}
-                                            className="w-full h-full rounded-full object-cover"
-                                        />
-                                    </div>
-                                </div>
-
-                                {/* Team Info */}
-                                <div className="text-center space-y-4">
-                                    <h3 className="text-3xl font-bold text-white">{selectedTeam.name}</h3>
-                                    <p className="text-cyan-400 font-medium text-lg">{selectedTeam.desc}</p>
-
-                                    <div className="h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent my-6"></div>
-
-                                    <p className="text-gray-300 text-base leading-relaxed">
-                                        {selectedTeam.fullDesc}
-                                    </p>
-
-                                    {selectedTeam.specs && (
-                                        <div className="mt-6 p-4 bg-black/30 rounded-xl border border-white/5">
-                                            <p className="text-gray-400 text-sm">
-                                                <span className="text-cyan-400 font-semibold">Spesifikasi:</span>
-                                                <br />
-                                                {selectedTeam.specs}
-                                            </p>
-                                        </div>
-                                    )}
-                                </div>
-
-                                {/* Action button */}
-                                <div className="mt-8 flex justify-center">
-                                    <button
-                                        onClick={closePopup}
-                                        className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-cyan-600 
-                                                 rounded-full text-white font-semibold hover:from-cyan-400 
-                                                 hover:to-cyan-500 transition-all duration-300 
-                                                 shadow-lg shadow-cyan-500/30"
-                                    >
-                                        Tutup
-                                    </button>
-                                </div>
-                            </div>
-                        </motion.div>
-                    </>
-                )}
-            </AnimatePresence>
+            {/* Team Bento Modal */}
+            <TeamBentoModal
+                isOpen={isPopupOpen}
+                onClose={closePopup}
+                team={selectedTeam}
+            />
         </section>
     );
 }
+
