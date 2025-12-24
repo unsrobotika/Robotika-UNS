@@ -25,7 +25,7 @@ export default function Philosophy() {
                 </ScrollReveal>
 
                 {/* Description Text Box */}
-                <ScrollReveal className="w-full max-w-3xl">
+                <ScrollReveal className="w-full max-w-[20rem] md:max-w-[38rem] lg:max-w-[43rem]">
                     <div className="relative p-6 md:p-8 rounded-2xl bg-slate-800/50 border border-white/10 backdrop-blur-sm">
                         {/* Decorative gradient */}
                         <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-500/5 via-transparent to-purple-500/5 pointer-events-none"></div>
