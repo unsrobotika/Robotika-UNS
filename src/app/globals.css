@@ -316,6 +316,51 @@ body {
   }
 }
 
+/* Infinite Scroll Carousel Animations */
+/* 
+   Using 2 identical groups, each = 50% of total track width.
+   Animation translates exactly 50% so when it resets,
+   group 2 is in the exact position where group 1 started.
+*/
+@keyframes scroll-left {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-right {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-scroll-left {
+  animation: scroll-left linear infinite;
+  will-change: transform;
+}
+
+.animate-scroll-right {
+  animation: scroll-right linear infinite;
+  will-change: transform;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+
+  .animate-scroll-left,
+  .animate-scroll-right {
+    animation: none;
+  }
+}
+
 .animate-fade-in-up {
   animation: fadeInUp 0.6s ease forwards;
 }
