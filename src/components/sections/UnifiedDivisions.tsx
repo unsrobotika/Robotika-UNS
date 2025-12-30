@@ -2,11 +2,12 @@
 
 import { m, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
-import { TECH_DIVISIONS, NON_TECH_DIVISIONS, DivisionItem } from "@/lib/data";
+import { TECH_DIVISIONS, NON_TECH_DIVISIONS, DivisionItem, DivisionItem1 } from "@/lib/data";
 import BentoModal from "@/components/ui/BentoModal";
-import { ArrowLeft, Cpu, Users } from "lucide-react";
+import { ArrowLeft, Code, Cpu, FileText, FlaskConical, Megaphone, Users, Wallet, Wrench } from "lucide-react";
 import { cn } from "@/lib/utils";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import Link from "next/link";
 
 // Types
 type CategoryType = 'tech' | 'non-tech' | null;
@@ -139,13 +140,15 @@ export default function UnifiedDivisions() {
 
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-x-32 md:gap-y-8">
                                         {currentDivisions.map((division, idx) => (
-                                            <DivisionSubCard
-                                                key={division.id}
+                                            <Link key={division.id} href={`/${division.id}`}>
+                                                <DivisionSubCard
                                                 division={division}
                                                 index={idx}
                                                 isTech={isTech}
-                                                onClick={() => setSelectedDivision(division)}
+                                                
                                             />
+                                            </Link>
+                                            
                                         ))}
                                     </div>
 
@@ -228,14 +231,26 @@ const DivisionSubCard = ({
     division,
     index,
     isTech,
-    onClick
+    
 }: {
-    division: DivisionItem;
+    division: DivisionItem1;
     index: number;
     isTech: boolean;
-    onClick: () => void;
+    
 }) => {
-    const Icon = division.icon;
+    const iconDict = {
+        Wrench:Wrench,
+        Users:Users,
+        Megaphone:Megaphone,
+        FileText: FileText,
+        Wallet:Wallet,
+        Cpu:Cpu,
+        Code:Code,
+        FlaskConical:FlaskConical
+
+
+     }
+    const Icon = iconDict[division.icon]
 
     return (
         <m.div
@@ -243,7 +258,7 @@ const DivisionSubCard = ({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
-            onClick={onClick}
+            
             className={cn(
                 "group relative overflow-hidden rounded-2xl border border-white/5 bg-slate-800/50 p-6 hover:bg-slate-800 transition-all cursor-pointer h-full min-h-[160px] flex flex-col md:flex-row items-center md:items-start gap-4 text-center md:text-left hover:scale-[1.02]",
                 isTech ? "hover:border-purple-500/30 hover:shadow-purple-500/10" : "hover:border-cyan-500/30 hover:shadow-cyan-500/10",
