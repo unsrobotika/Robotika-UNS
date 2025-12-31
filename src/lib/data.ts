@@ -44,6 +44,22 @@ export interface DivisionItem {
     specs: string;
     bentoContent: BentoContent;
 }
+export interface DivisionItem1 {
+    id: string;
+    title: string;
+    icon: string;
+    shortDesc: string;
+    details: string;
+    stats: string;
+    accent: string;
+    image: string;
+    name: string;
+    desc: string;
+    fullDesc: string;
+    specs: string;
+    bentoContent: BentoContent;
+}
+
 
 export const HERO_CONTENT = {
     title: "ROBOTIKA UNS",
@@ -61,11 +77,11 @@ export const ABOUT_US_CONTENT = {
     subtitle: "Kenali lebih dekat keluarga besar Robotika UNS"
 };
 
-export const NON_TECH_DIVISIONS: DivisionItem[] = [
+export const NON_TECH_DIVISIONS: DivisionItem1[] = [
     {
         id: "hr",
         title: "Human Resources",
-        icon: Users,
+        icon: "Users",
         shortDesc: "Evaluasi kinerja, bonding",
         details: "Bertanggung jawab atas evaluasi kinerja anggota (Rapor) dan membangun chemistry antar anggota melalui kegiatan bonding rutin.",
         stats: "Focus: Internal Harmony",
@@ -99,7 +115,7 @@ export const NON_TECH_DIVISIONS: DivisionItem[] = [
     {
         id: "humas",
         title: "Humas Media",
-        icon: Megaphone,
+        icon: "Megaphone",
         shortDesc: "Partnership, Branding",
         details: "Mengelola branding organisasi, sosial media, dan menjalin kemitraan strategis dengan pihak eksternal. Target tahun ini: 2000 Followers.",
         stats: "Target: 2k Followers",
@@ -133,7 +149,7 @@ export const NON_TECH_DIVISIONS: DivisionItem[] = [
     {
         id: "sekretaris",
         title: "Sekretaris",
-        icon: FileText,
+        icon: "FileText",
         shortDesc: "Inventarisasi, Arsip",
         details: "Pusat administrasi, pengelolaan surat menyurat, pengarsipan dokumen penting, dan inventarisasi aset organisasi.",
         stats: "Focus: Administration",
@@ -167,7 +183,7 @@ export const NON_TECH_DIVISIONS: DivisionItem[] = [
     {
         id: "bendahara",
         title: "Bendahara",
-        icon: Wallet,
+        icon: "Wallet",
         shortDesc: "RAB, Cashflow",
         details: "Mengelola arus kas, menyusun Rencana Anggaran Biaya (RAB), dan memastikan transparansi keuangan organisasi.",
         stats: "Focus: Financial Health",
@@ -200,11 +216,11 @@ export const NON_TECH_DIVISIONS: DivisionItem[] = [
     }
 ];
 
-export const TECH_DIVISIONS: DivisionItem[] = [
+export const TECH_DIVISIONS: DivisionItem1[] = [
     {
         id: "desain",
         title: "Desain & Manufaktur",
-        icon: Wrench,
+        icon: "Wrench",
         shortDesc: "Riset bahan, CAD, Manufaktur Bodi",
         details: "Fokus pada riset material, perancangan desain CAD 3D, dan manufaktur bodi robot yang presisi.",
         stats: "Focus: Mechanical Design",
@@ -238,7 +254,7 @@ export const TECH_DIVISIONS: DivisionItem[] = [
     {
         id: "elektronis",
         title: "Elektronis",
-        icon: Cpu,
+        icon: "Cpu",
         shortDesc: "PCB Design, Wiring, Electrical framework",
         details: "Merancang sistem kelistrikan, desain PCB, layout wiring yang rapi, dan manajemen daya robot.",
         stats: "Focus: Circuitry",
@@ -272,7 +288,7 @@ export const TECH_DIVISIONS: DivisionItem[] = [
     {
         id: "pemrograman",
         title: "Pemrograman",
-        icon: Code,
+        icon: "Code",
         shortDesc: "Algorithm, AI, Robot Navigation",
         details: "Mengembangkan algoritma cerdas, implementasi AI, dan sistem navigasi otonom untuk pergerakan robot.",
         stats: "Focus: Intelligence",
@@ -306,7 +322,7 @@ export const TECH_DIVISIONS: DivisionItem[] = [
     {
         id: "rnd",
         title: "Riset & Pengembangan",
-        icon: FlaskConical,
+        icon: "FlaskConical",
         shortDesc: "Proposal & Article writing for competitions",
         details: "Bekerja pada inovasi baru, penulisan proposal kompetisi, dan publikasi artikel ilmiah terkait teknologi robotika.",
         stats: "Focus: Innovation",
