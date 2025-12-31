@@ -14,7 +14,7 @@ export default async function Page({
 
     return (
         <div>
-            <Divisi division={status[i]}/>
+            <Divisi division={status[i]} accentColor={status === TECH_DIVISIONS? "purple": "cyan" }/>
         </div>
     )
 }

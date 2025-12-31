@@ -260,7 +260,7 @@ export const TECH_DIVISIONS: DivisionItem1[] = [
                 "Riset Material Baru"
             ],
         teamMembers: [
-                { name: "Anggota 1", role: "Koordinator", image: "/images/placeholder-profile.webp" , major: "abcd" , nim: "123",year:2024 },
+                { name: "Anggota 1", role: "Koordinator", image: "https://1.bp.blogspot.com/-b6opCz_-GtQ/VHlR_JeT2uI/AAAAAAAABQg/8nQ5F43xA5k/s1600/presiden_jokowi.jpg" , major: "abcd" , nim: "123",year:2024 },
                 { name: "Anggota 2", role: "Staff", image: "/images/placeholder-profile.webp", major: "abcd" , nim: "123",year:2024}
             ]
     

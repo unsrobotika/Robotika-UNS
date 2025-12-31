@@ -49,6 +49,8 @@ const AnimatedNumber = ({ value }: { value: number }) => {
 export default function Divisi({
     
     division,
+    accentColor
+
     
 
 }: BentoModalProps) {
@@ -92,7 +94,7 @@ export default function Divisi({
               transition={{ delay: 0.5 }}
             >
               <span className="px-3 py-1 rounded-full bg-blue-600/20 border border-blue-500/50 text-blue-400 text-xs md:text-sm font-medium mb-4 inline-block">
-                UKM Robotika UNS
+                DIVISI
               </span>
               <h1 className="text-4xl sm:text-6xl lg:text-8xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400 leading-[1.1]">
                 {division.title.toUpperCase()}
@@ -111,10 +113,10 @@ export default function Divisi({
             {/* ROW 1: Logo & stats */}
             <m.div 
               whileHover={{ scale: 0.98 }}
-              className="bg-blue-600 rounded-3xl py-10 md:py-0 flex flex-col items-center justify-center text-white"
+              className={`bg-${accentColor}-600 rounded-3xl py-10 md:py-0 flex flex-col items-center justify-center text-white`}
             >
               <Icon size={64} strokeWidth={1.5} className="mb-2" />
-              <p className="font-bold tracking-widest text-xs uppercase">Core Division</p>
+              <p className="font-bold tracking-widest text-xs uppercase">Division Logo</p>
             </m.div>
 
             <m.div 
@@ -149,7 +151,7 @@ export default function Divisi({
 
             <m.div 
               whileHover={{ scale: 0.98 }}
-              className="bg-gradient-to-br from-blue-900 to-slate-900 border border-slate-700 p-6 rounded-3xl overflow-hidden relative min-h-[150px]"
+              className={`bg-gradient-to-br from-${accentColor}-900 to-slate-900 border border-slate-700 p-6 rounded-3xl overflow-hidden relative min-h-[150px]`}
             >
               <Zap className="absolute -right-4 -bottom-4 text-blue-500/20" size={120} />
               <h3 className="font-bold uppercase tracking-widest text-[10px] md:text-xs mb-4 text-blue-400">Top Wins</h3>
