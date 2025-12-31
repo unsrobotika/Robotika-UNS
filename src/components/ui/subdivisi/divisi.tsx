@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { m, AnimatePresence, LazyMotion, domAnimation, useInView } from "motion/react";
-import { Wrench, Trophy, Briefcase, Users, Megaphone, FileText, Wallet, Cpu, Code, FlaskConical } from "lucide-react";
+import { Wrench, Trophy, Briefcase, Zap, Users, Megaphone, FileText, Wallet, Cpu, Code, FlaskConical } from "lucide-react";
 import { DivisionItem1 } from "@/lib/data";
 import Image from "next/image";
 
@@ -113,7 +113,7 @@ export default function Divisi({
               whileHover={{ scale: 0.98 }}
               className="bg-blue-600 rounded-3xl py-10 md:py-0 flex flex-col items-center justify-center text-white"
             >
-              <Cpu size={64} strokeWidth={1.5} className="mb-2" />
+              <Icon size={64} strokeWidth={1.5} className="mb-2" />
               <p className="font-bold tracking-widest text-xs uppercase">Core Division</p>
             </m.div>
 
@@ -151,7 +151,7 @@ export default function Divisi({
               whileHover={{ scale: 0.98 }}
               className="bg-gradient-to-br from-blue-900 to-slate-900 border border-slate-700 p-6 rounded-3xl overflow-hidden relative min-h-[150px]"
             >
-              <Icon className="absolute -right-4 -bottom-4 text-blue-500/20" size={120} />
+              <Zap className="absolute -right-4 -bottom-4 text-blue-500/20" size={120} />
               <h3 className="font-bold uppercase tracking-widest text-[10px] md:text-xs mb-4 text-blue-400">Top Wins</h3>
               <ul className="space-y-2 text-sm font-medium relative z-10">
                 {division.achievements.slice(0, 2).map((item, i) => (
