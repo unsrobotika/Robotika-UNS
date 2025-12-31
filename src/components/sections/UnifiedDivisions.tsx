@@ -287,9 +287,7 @@ const DivisionSubCard = ({
                 <p className="text-sm text-gray-400 line-clamp-2">
                     {division.shortDesc}
                 </p>
-                <div className="mt-3 inline-block rounded-full bg-white/5 px-3 py-1 text-xs text-gray-400">
-                    {division.stats}
-                </div>
+                
             </div>
         </m.div>
     );

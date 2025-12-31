@@ -11,10 +11,20 @@ import {
 } from 'lucide-react';
 
 // Type untuk team member di bento modal
-export interface TeamMember {
+export interface TeamMember1 {
     name: string;
     role: string;
     image: string; // path to profile image
+    nim: string;
+    year:number;
+    major:string
+}
+
+export interface TeamMember{
+    name: string;
+    role: string;
+    image: string; // path to profile image
+    
 }
 
 // Type untuk bento content
@@ -23,9 +33,8 @@ export interface BentoContent {
     description: string;
     textContent: string;
     image: string;
-    achievements?: string[];
-    programs?: string[];
     teamMembers?: TeamMember[];
+    
 }
 
 // Type untuk division item
@@ -42,6 +51,7 @@ export interface DivisionItem {
     desc: string;
     fullDesc: string;
     specs: string;
+
     bentoContent: BentoContent;
 }
 export interface DivisionItem1 {
@@ -50,14 +60,20 @@ export interface DivisionItem1 {
     icon: string;
     shortDesc: string;
     details: string;
-    stats: string;
+    stats: {
+        label:string;
+        value:number;
+    }[];
     accent: string;
     image: string;
     name: string;
     desc: string;
     fullDesc: string;
     specs: string;
-    bentoContent: BentoContent;
+    achievements: string[];
+    programs: string[];
+    teamMembers: TeamMember1[];
+    
 }
 
 
@@ -84,33 +100,32 @@ export const NON_TECH_DIVISIONS: DivisionItem1[] = [
         icon: "Users",
         shortDesc: "Evaluasi kinerja, bonding",
         details: "Bertanggung jawab atas evaluasi kinerja anggota (Rapor) dan membangun chemistry antar anggota melalui kegiatan bonding rutin.",
-        stats: "Focus: Internal Harmony",
         accent: "bg-purple-500",
         image: "/images/placeholder.webp",
         name: "Human Resources",
         desc: "Evaluasi kinerja, bonding",
         fullDesc: "Bertanggung jawab atas evaluasi kinerja anggota (Rapor) dan membangun chemistry antar anggota melalui kegiatan bonding rutin.",
         specs: "Focus: Internal Harmony",
-        bentoContent: {
-            headline: "Human Resources Division",
-            description: "Divisi yang bertanggung jawab atas pengelolaan sumber daya manusia dalam organisasi Robotika UNS.",
-            textContent: "HR bertugas memastikan setiap anggota merasa nyaman dan berkembang. Kami melakukan evaluasi berkala melalui sistem Rapor untuk memantau perkembangan setiap anggota. Selain itu, kami juga mengorganisir berbagai kegiatan bonding untuk mempererat hubungan antar anggota.",
-            image: "/images/placeholder.webp",
-            achievements: [
+        stats: [
+            { label: "Active Projects", value: 12 },
+            { label: "Competitions Won", value: 8 },
+            { label: "Lines of Code", value: 45000 },
+        ],
+        achievements: [
                 "Sistem Rapor Digital 2024",
                 "Monthly Bonding Events",
                 "Mentorship Program"
             ],
-            programs: [
+        programs: [
                 "Evaluasi Kinerja Bulanan",
                 "Bonding Session",
                 "Welcome Party Anggota Baru"
             ],
-            teamMembers: [
-                { name: "Anggota 1", role: "Koordinator", image: "/images/placeholder-profile.webp" },
-                { name: "Anggota 2", role: "Staff", image: "/images/placeholder-profile.webp" }
+         teamMembers: [
+                { name: "Anggota 1", role: "Koordinator", image: "/images/placeholder-profile.webp" , major: "abcd" , nim: "123",year:2024 },
+                { name: "Anggota 2", role: "Staff", image: "/images/placeholder-profile.webp", major: "abcd" , nim: "123",year:2024}
             ]
-        }
+       
     },
     {
         id: "humas",
@@ -118,33 +133,34 @@ export const NON_TECH_DIVISIONS: DivisionItem1[] = [
         icon: "Megaphone",
         shortDesc: "Partnership, Branding",
         details: "Mengelola branding organisasi, sosial media, dan menjalin kemitraan strategis dengan pihak eksternal. Target tahun ini: 2000 Followers.",
-        stats: "Target: 2k Followers",
         accent: "bg-pink-500",
         image: "/images/placeholder.webp",
         name: "Humas Media",
         desc: "Partnership, Branding",
         fullDesc: "Mengelola branding organisasi, sosial media, dan menjalin kemitraan strategis dengan pihak eksternal. Target tahun ini: 2000 Followers.",
+        stats: [
+            { label: "Active Projects", value: 12 },
+            { label: "Competitions Won", value: 8 },
+            { label: "Lines of Code", value: 45000 },
+        ],
         specs: "Target: 2k Followers",
-        bentoContent: {
-            headline: "Humas & Media Division",
-            description: "Wajah dan suara Robotika UNS di dunia luar. Mengelola branding, sosial media, dan kemitraan strategis.",
-            textContent: "Humas Media bertanggung jawab membangun citra positif Robotika UNS. Kami mengelola seluruh platform sosial media, membuat konten kreatif, dan menjalin kerjasama dengan sponsor serta media partner untuk mendukung kegiatan organisasi.",
-            image: "/images/placeholder.webp",
-            achievements: [
+        achievements: [
                 "1.5K+ Instagram Followers",
                 "Partnership dengan 5+ Sponsor",
                 "Liputan Media Nasional"
             ],
-            programs: [
+        programs: [
                 "Social Media Management",
                 "Content Creation",
                 "Media Partnership"
-            ],
-            teamMembers: [
-                { name: "Anggota 1", role: "Koordinator", image: "/images/placeholder-profile.webp" },
-                { name: "Anggota 2", role: "Staff", image: "/images/placeholder-profile.webp" }
-            ]
-        }
+            ],  
+        teamMembers: [
+                { name: "Anggota 1", role: "Koordinator", image: "/images/placeholder-profile.webp" , major: "abcd" , nim: "123",year:2024 },
+                { name: "Anggota 2", role: "Staff", image: "/images/placeholder-profile.webp", major: "abcd" , nim: "123",year:2024}
+            ] 
+        
+        
+        
     },
     {
         id: "sekretaris",
@@ -152,33 +168,31 @@ export const NON_TECH_DIVISIONS: DivisionItem1[] = [
         icon: "FileText",
         shortDesc: "Inventarisasi, Arsip",
         details: "Pusat administrasi, pengelolaan surat menyurat, pengarsipan dokumen penting, dan inventarisasi aset organisasi.",
-        stats: "Focus: Administration",
         accent: "bg-blue-500",
         image: "/images/placeholder.webp",
         name: "Sekretaris",
         desc: "Inventarisasi, Arsip",
         fullDesc: "Pusat administrasi, pengelolaan surat menyurat, pengarsipan dokumen penting, dan inventarisasi aset organisasi.",
         specs: "Focus: Administration",
-        bentoContent: {
-            headline: "Sekretaris Division",
-            description: "Pusat administrasi dan dokumentasi organisasi Robotika UNS.",
-            textContent: "Sekretaris mengelola seluruh aspek administratif organisasi. Mulai dari pembuatan surat resmi, pengarsipan dokumen, hingga inventarisasi aset. Kami memastikan semua proses administrasi berjalan lancar dan terdokumentasi dengan baik.",
-            image: "/images/placeholder.webp",
-            achievements: [
+        stats: [
+            { label: "Active Projects", value: 12 },
+            { label: "Competitions Won", value: 8 },
+            { label: "Lines of Code", value: 45000 },
+        ],
+        achievements: [
                 "Sistem Arsip Digital",
                 "Database Inventaris Online",
                 "Template Surat Standar"
             ],
-            programs: [
+        programs: [
                 "Pengelolaan Surat Menyurat",
                 "Inventarisasi Aset",
                 "Dokumentasi Kegiatan"
             ],
-            teamMembers: [
-                { name: "Anggota 1", role: "Koordinator", image: "/images/placeholder-profile.webp" },
-                { name: "Anggota 2", role: "Staff", image: "/images/placeholder-profile.webp" }
+        teamMembers: [
+                { name: "Anggota 1", role: "Koordinator", image: "/images/placeholder-profile.webp" , major: "abcd" , nim: "123",year:2024 },
+                { name: "Anggota 2", role: "Staff", image: "/images/placeholder-profile.webp", major: "abcd" , nim: "123",year:2024}
             ]
-        }
     },
     {
         id: "bendahara",
@@ -186,33 +200,32 @@ export const NON_TECH_DIVISIONS: DivisionItem1[] = [
         icon: "Wallet",
         shortDesc: "RAB, Cashflow",
         details: "Mengelola arus kas, menyusun Rencana Anggaran Biaya (RAB), dan memastikan transparansi keuangan organisasi.",
-        stats: "Focus: Financial Health",
         accent: "bg-green-500",
         image: "/images/placeholder.webp",
         name: "Bendahara",
         desc: "RAB, Cashflow",
         fullDesc: "Mengelola arus kas, menyusun Rencana Anggaran Biaya (RAB), dan memastikan transparansi keuangan organisasi.",
         specs: "Focus: Financial Health",
-        bentoContent: {
-            headline: "Bendahara Division",
-            description: "Pengelola keuangan organisasi yang memastikan stabilitas finansial Robotika UNS.",
-            textContent: "Bendahara bertanggung jawab atas seluruh aspek keuangan organisasi. Kami menyusun RAB untuk setiap kegiatan, memantau arus kas, dan membuat laporan keuangan yang transparan. Tujuan kami adalah memastikan kesehatan finansial organisasi untuk mendukung semua program kerja.",
-            image: "/images/placeholder.webp",
-            achievements: [
+        stats: [
+            { label: "Active Projects", value: 12 },
+            { label: "Competitions Won", value: 8 },
+            { label: "Lines of Code", value: 45000 },
+        ],
+        achievements: [
                 "Laporan Keuangan Transparan",
                 "Sistem Budgeting Digital",
                 "Zero Deficit 2024"
             ],
-            programs: [
+        programs: [
                 "Penyusunan RAB",
                 "Monitoring Cashflow",
                 "Laporan Keuangan Bulanan"
             ],
-            teamMembers: [
-                { name: "Anggota 1", role: "Koordinator", image: "/images/placeholder-profile.webp" },
-                { name: "Anggota 2", role: "Staff", image: "/images/placeholder-profile.webp" }
+        teamMembers: [
+                { name: "Anggota 1", role: "Koordinator", image: "/images/placeholder-profile.webp" , major: "abcd" , nim: "123",year:2024 },
+                { name: "Anggota 2", role: "Staff", image: "/images/placeholder-profile.webp", major: "abcd" , nim: "123",year:2024}
             ]
-        }
+       
     }
 ];
 
@@ -223,33 +236,32 @@ export const TECH_DIVISIONS: DivisionItem1[] = [
         icon: "Wrench",
         shortDesc: "Riset bahan, CAD, Manufaktur Bodi",
         details: "Fokus pada riset material, perancangan desain CAD 3D, dan manufaktur bodi robot yang presisi.",
-        stats: "Focus: Mechanical Design",
         accent: "bg-orange-500",
         image: "/images/placeholder.webp",
         name: "Desain & Manufaktur",
         desc: "Riset bahan, CAD, Manufaktur Bodi",
         fullDesc: "Fokus pada riset material, perancangan desain CAD 3D, dan manufaktur bodi robot yang presisi.",
         specs: "Focus: Mechanical Design",
-        bentoContent: {
-            headline: "Desain & Manufaktur Division",
-            description: "Tim yang merancang dan memproduksi komponen fisik robot dengan presisi tinggi.",
-            textContent: "Divisi Desain & Manufaktur bertanggung jawab atas seluruh aspek mekanik robot. Kami melakukan riset material untuk menemukan bahan terbaik, merancang desain 3D menggunakan software CAD profesional, dan melakukan proses manufaktur mulai dari cutting, bending, hingga assembly final.",
-            image: "/images/placeholder.webp",
-            achievements: [
+        stats: [
+            { label: "Active Projects", value: 12 },
+            { label: "Competitions Won", value: 8 },
+            { label: "Lines of Code", value: 45000 },
+        ],
+        achievements: [
                 "Desain Robot ABU 2024",
                 "Inovasi Material Lightweight",
                 "CNC Precision Parts"
             ],
-            programs: [
+        programs: [
                 "Training CAD/CAM",
                 "Workshop Manufaktur",
                 "Riset Material Baru"
             ],
-            teamMembers: [
-                { name: "Anggota 1", role: "Koordinator", image: "/images/placeholder-profile.webp" },
-                { name: "Anggota 2", role: "Staff", image: "/images/placeholder-profile.webp" }
+        teamMembers: [
+                { name: "Anggota 1", role: "Koordinator", image: "/images/placeholder-profile.webp" , major: "abcd" , nim: "123",year:2024 },
+                { name: "Anggota 2", role: "Staff", image: "/images/placeholder-profile.webp", major: "abcd" , nim: "123",year:2024}
             ]
-        }
+    
     },
     {
         id: "elektronis",
@@ -257,33 +269,32 @@ export const TECH_DIVISIONS: DivisionItem1[] = [
         icon: "Cpu",
         shortDesc: "PCB Design, Wiring, Electrical framework",
         details: "Merancang sistem kelistrikan, desain PCB, layout wiring yang rapi, dan manajemen daya robot.",
-        stats: "Focus: Circuitry",
         accent: "bg-yellow-500",
         image: "/images/placeholder.webp",
         name: "Elektronis",
         desc: "PCB Design, Wiring, Electrical framework",
         fullDesc: "Merancang sistem kelistrikan, desain PCB, layout wiring yang rapi, dan manajemen daya robot.",
         specs: "Focus: Circuitry",
-        bentoContent: {
-            headline: "Elektronis Division",
-            description: "Ahli kelistrikan yang membangun sistem power dan kontrol robot.",
-            textContent: "Divisi Elektronis menangani seluruh aspek kelistrikan robot. Mulai dari desain PCB custom, layout wiring yang efisien, hingga power management untuk memastikan robot dapat beroperasi dengan optimal. Kami juga mengembangkan sistem sensor dan aktuator.",
-            image: "/images/placeholder.webp",
-            achievements: [
+        stats: [
+            { label: "Active Projects", value: 12 },
+            { label: "Competitions Won", value: 8 },
+            { label: "Lines of Code", value: 45000 },
+        ],
+        achievements: [
                 "Custom PCB Controller",
                 "Efficient Power System",
                 "Sensor Integration"
             ],
-            programs: [
+        programs: [
                 "PCB Design Training",
                 "Soldering Workshop",
                 "Power Management Study"
             ],
-            teamMembers: [
-                { name: "Anggota 1", role: "Koordinator", image: "/images/placeholder-profile.webp" },
-                { name: "Anggota 2", role: "Staff", image: "/images/placeholder-profile.webp" }
+        teamMembers: [
+                { name: "Anggota 1", role: "Koordinator", image: "/images/placeholder-profile.webp" , major: "abcd" , nim: "123",year:2024 },
+                { name: "Anggota 2", role: "Staff", image: "/images/placeholder-profile.webp", major: "abcd" , nim: "123",year:2024}
             ]
-        }
+        
     },
     {
         id: "pemrograman",
@@ -291,33 +302,32 @@ export const TECH_DIVISIONS: DivisionItem1[] = [
         icon: "Code",
         shortDesc: "Algorithm, AI, Robot Navigation",
         details: "Mengembangkan algoritma cerdas, implementasi AI, dan sistem navigasi otonom untuk pergerakan robot.",
-        stats: "Focus: Intelligence",
         accent: "bg-cyan-500",
         image: "/images/placeholder.webp",
         name: "Pemrograman",
         desc: "Algorithm, AI, Robot Navigation",
         fullDesc: "Mengembangkan algoritma cerdas, implementasi AI, dan sistem navigasi otonom untuk pergerakan robot.",
         specs: "Focus: Intelligence",
-        bentoContent: {
-            headline: "Pemrograman Division",
-            description: "Otak digital robot yang mengembangkan algoritma cerdas dan sistem navigasi.",
-            textContent: "Divisi Pemrograman adalah otak dari setiap robot yang kami buat. Kami mengembangkan algoritma untuk kontrol motor, sistem navigasi otonom, computer vision untuk deteksi objek, dan implementasi AI untuk pengambilan keputusan real-time.",
-            image: "/images/placeholder.webp",
-            achievements: [
+        stats: [
+            { label: "Active Projects", value: 12 },
+            { label: "Competitions Won", value: 8 },
+            { label: "Lines of Code", value: 45000 },
+        ],
+        achievements: [
                 "Autonomous Navigation",
                 "Computer Vision System",
                 "Real-time AI Decision"
             ],
-            programs: [
+        programs: [
                 "Coding Bootcamp",
                 "AI/ML Workshop",
                 "ROS Training"
             ],
-            teamMembers: [
-                { name: "Anggota 1", role: "Koordinator", image: "/images/placeholder-profile.webp" },
-                { name: "Anggota 2", role: "Staff", image: "/images/placeholder-profile.webp" }
+        teamMembers: [
+                { name: "Anggota 1", role: "Koordinator", image: "/images/placeholder-profile.webp" , major: "abcd" , nim: "123",year:2024 },
+                { name: "Anggota 2", role: "Staff", image: "/images/placeholder-profile.webp", major: "abcd" , nim: "123",year:2024}
             ]
-        }
+        
     },
     {
         id: "rnd",
@@ -325,33 +335,31 @@ export const TECH_DIVISIONS: DivisionItem1[] = [
         icon: "FlaskConical",
         shortDesc: "Proposal & Article writing for competitions",
         details: "Bekerja pada inovasi baru, penulisan proposal kompetisi, dan publikasi artikel ilmiah terkait teknologi robotika.",
-        stats: "Focus: Innovation",
         accent: "bg-indigo-500",
         image: "/images/placeholder.webp",
         name: "Riset & Pengembangan",
         desc: "Proposal & Article writing for competitions",
         fullDesc: "Bekerja pada inovasi baru, penulisan proposal kompetisi, dan publikasi artikel ilmiah terkait teknologi robotika.",
         specs: "Focus: Innovation",
-        bentoContent: {
-            headline: "Riset & Pengembangan Division",
-            description: "Pusat inovasi dan pengembangan teknologi baru untuk kemajuan robotika.",
-            textContent: "Divisi R&D berfokus pada eksplorasi teknologi baru dan inovasi. Kami menulis proposal untuk berbagai kompetisi robotika, melakukan riset untuk publikasi ilmiah, dan terus mencari cara baru untuk meningkatkan performa robot kami.",
-            image: "/images/placeholder.webp",
-            achievements: [
+        stats: [
+            { label: "Active Projects", value: 12 },
+            { label: "Competitions Won", value: 8 },
+            { label: "Lines of Code", value: 45000 },
+        ],
+        achievements: [
                 "5+ Proposal Diterima",
                 "Publikasi Jurnal Ilmiah",
                 "Inovasi Teknologi Baru"
             ],
-            programs: [
+        programs: [
                 "Research Methodology",
                 "Scientific Writing",
                 "Innovation Challenge"
             ],
-            teamMembers: [
-                { name: "Anggota 1", role: "Koordinator", image: "/images/placeholder-profile.webp" },
-                { name: "Anggota 2", role: "Staff", image: "/images/placeholder-profile.webp" }
+        teamMembers: [
+                { name: "Anggota 1", role: "Koordinator", image: "/images/placeholder-profile.webp" , major: "abcd" , nim: "123",year:2024 },
+                { name: "Anggota 2", role: "Staff", image: "/images/placeholder-profile.webp", major: "abcd" , nim: "123",year:2024}
             ]
-        }
     }
 ];
 

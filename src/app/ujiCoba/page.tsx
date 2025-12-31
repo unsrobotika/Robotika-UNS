@@ -1,18 +1,59 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { m, AnimatePresence, LazyMotion, domAnimation, useInView } from "motion/react";
-import { Wrench, Trophy, Briefcase, Users, Megaphone, FileText, Wallet, Cpu, Code, FlaskConical } from "lucide-react";
-import { DivisionItem1 } from "@/lib/data";
-import Image from "next/image";
+import { m, LazyMotion, domAnimation, useInView } from "framer-motion";
+import { Cpu, Zap } from "lucide-react"; 
 
-
-
-interface BentoModalProps {
-    
-    division: DivisionItem1 | null;
-    accentColor?: "cyan" | "purple"; // untuk NonTech (cyan) dan Tech (purple)
-}
+// --- DUMMY DATA ---
+const DIVISION_DATA = {
+  id: "programming",
+  name: "Programming Division",
+  alias: "The Brains", 
+  description: "The Programming division is responsible for developing autonomous algorithms, computer vision, and the logical architecture of our robots. We turn hardware into intelligent machines.",
+  heroImage: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=2069&auto=format&fit=crop",
+  stats: [
+    { label: "Active Projects", value: 12 },
+    { label: "Competitions Won", value: 8 },
+    { label: "Lines of Code", value: 45000 },
+  ],
+  achievements: [
+    "1st Place KRI Regional 2024",
+    "Best Strategy ABU Robocon 2023",
+    "Top 5 National Programming Contest",
+  ],
+  workPrograms: [
+    "ROS 2 Integration Workshop",
+    "Computer Vision Research Lab",
+    "Autonomous Navigation Tuning",
+    "Internal Hackathon 2025",
+  ],
+  members: [
+    {
+      name: "Bayu Aji Nugroho",
+      role: "Lead Programmer",
+      nim: "K712XXXX",
+      major: "PGSD",
+      year: "2023",
+      image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Bayu",
+    },
+    {
+      name: "Andi Wijaya",
+      role: "Vision Specialist",
+      nim: "M052XXXX",
+      major: "Informatika",
+      year: "2022",
+      image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Andi",
+    },
+    {
+      name: "Siti Aminah",
+      role: "Embedded Systems",
+      nim: "I072XXXX",
+      major: "Teknik Elektro",
+      year: "2024",
+      image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Siti",
+    },
+  ],
+};
 
 // --- SUB-COMPONENTS ---
 
@@ -43,33 +84,10 @@ const AnimatedNumber = ({ value }: { value: number }) => {
   return <span ref={ref}>{displayValue.toLocaleString()}</span>;
 };
 
+// --- MAIN LAYOUT COMPONENT ---
 
-//komponen setiap page divisi
-
-export default function Divisi({
-    
-    division,
-    
-
-}: BentoModalProps) {
-    if (!division) return null;
-    
-    const iconDict = {
-        Wrench:Wrench,
-        Users:Users,
-        Megaphone:Megaphone,
-        FileText: FileText,
-        Wallet:Wallet,
-        Cpu:Cpu,
-        Code:Code,
-        FlaskConical:FlaskConical
-     }
-
-     const Icon = iconDict[division.icon]
-    
-  
-
-    return (
+export default function DivisionDetail() {
+  return (
     <LazyMotion features={domAnimation}>
       <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-blue-500/30 overflow-x-hidden">
         
@@ -79,7 +97,7 @@ export default function Divisi({
             initial={{ scale: 1.1, opacity: 0 }}
             animate={{ scale: 1, opacity: 0.4 }}
             transition={{ duration: 1.5 }}
-            src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=2069&auto=format&fit=crop"
+            src={DIVISION_DATA.heroImage} 
             className="absolute inset-0 w-full h-full object-cover z-0"
             alt="Hero"
           />
@@ -95,10 +113,10 @@ export default function Divisi({
                 UKM Robotika UNS
               </span>
               <h1 className="text-4xl sm:text-6xl lg:text-8xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400 leading-[1.1]">
-                {division.title.toUpperCase()}
+                {DIVISION_DATA.name.toUpperCase()}
               </h1>
               <p className="text-lg md:text-xl text-slate-400 mt-4 max-w-2xl italic">
-                 {division.details}
+                "{DIVISION_DATA.alias}" — {DIVISION_DATA.description}
               </p>
             </m.div>
           </div>
@@ -123,7 +141,7 @@ export default function Divisi({
             >
               <h3 className="text-slate-500 font-bold uppercase tracking-widest text-[10px] md:text-xs mb-6">Performance Metrics</h3>
               <div className="grid grid-cols-3 gap-2 md:gap-4">
-                {division.stats.map((stat, i) => (
+                {DIVISION_DATA.stats.map((stat, i) => (
                   <div key={i} className="text-center md:text-left">
                     <p className="text-2xl md:text-3xl font-bold text-white">
                       <AnimatedNumber value={stat.value} />+
@@ -151,10 +169,10 @@ export default function Divisi({
               whileHover={{ scale: 0.98 }}
               className="bg-gradient-to-br from-blue-900 to-slate-900 border border-slate-700 p-6 rounded-3xl overflow-hidden relative min-h-[150px]"
             >
-              <Icon className="absolute -right-4 -bottom-4 text-blue-500/20" size={120} />
+              <Zap className="absolute -right-4 -bottom-4 text-blue-500/20" size={120} />
               <h3 className="font-bold uppercase tracking-widest text-[10px] md:text-xs mb-4 text-blue-400">Top Wins</h3>
               <ul className="space-y-2 text-sm font-medium relative z-10">
-                {division.achievements.slice(0, 2).map((item, i) => (
+                {DIVISION_DATA.achievements.slice(0, 2).map((item, i) => (
                   <li key={i} className="flex gap-2"><span>🏆</span> {item}</li>
                 ))}
               </ul>
@@ -167,7 +185,7 @@ export default function Divisi({
             >
               <h3 className="text-slate-500 font-bold uppercase tracking-widest text-[10px] md:text-xs mb-6">Program Kerja</h3>
               <div className="space-y-4">
-                {division.programs.map((prog, i) => (
+                {DIVISION_DATA.workPrograms.map((prog, i) => (
                   <div key={i} className="flex items-center gap-4 group">
                     <div className="w-2 h-2 rounded-full bg-blue-500 group-hover:scale-150 transition-transform flex-shrink-0" />
                     <p className="text-slate-300 font-medium text-sm md:text-base">{prog}</p>
@@ -201,7 +219,7 @@ export default function Divisi({
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
-            {division.teamMembers.map((member, i) => (
+            {DIVISION_DATA.members.map((member, i) => (
                 <m.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
@@ -252,5 +270,5 @@ export default function Divisi({
         
       </div>
     </LazyMotion>
-    );
+  );
 }
