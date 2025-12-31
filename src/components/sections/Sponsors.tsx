@@ -26,18 +26,16 @@ function CarouselCard({ item }: { item: CarouselItem }) {
             href={item.link || "#"}
             target={item.link ? "_blank" : undefined}
             rel={item.link ? "noopener noreferrer" : undefined}
-            className="flex-shrink-0 w-36 h-20 md:w-44 md:h-24 bg-slate-800/50 rounded-xl p-3 border border-white/5 hover:border-blue-500/30 hover:bg-slate-800 transition-colors duration-300 flex items-center justify-center group"
+            className="flex-shrink-0 h-20 md:h-24 bg-slate-800/50 rounded-xl px-6 py-2 border border-white/5 hover:border-blue-500/30 hover:bg-slate-800 transition-colors duration-300 flex items-center justify-center group min-w-[120px]"
         >
-            <div className="relative w-full h-full grayscale group-hover:grayscale-0 opacity-70 group-hover:opacity-100 transition-all duration-300">
-                <Image
+            <div className="relative h-12 md:h-16 w-auto aspect-auto grayscale group-hover:grayscale-0 opacity-70 group-hover:opacity-100 transition-all duration-300">
+                <img
                     src={item.logo}
-                    alt={`Logo ${item.name}`}
-                    fill
-                    className="object-contain"
-                    sizes="(max-width: 768px) 144px, 176px"
+                    alt={`${item.name}`}
+                    className="h-full w-auto object-contain"
                 />
             </div>
-        </a>
+        </a >
     );
 }
 
@@ -80,8 +78,8 @@ function InfiniteCarousel({
                 */}
                 <div
                     className={`flex w-max group-hover/carousel:[animation-play-state:paused] ${direction === "left"
-                            ? "animate-scroll-left"
-                            : "animate-scroll-right"
+                        ? "animate-scroll-left"
+                        : "animate-scroll-right"
                         }`}
                     style={{
                         animationDuration: `${speed * 2}s`, // Slower duration because the track is huge
@@ -90,19 +88,17 @@ function InfiniteCarousel({
                     {/* HUGE GROUP 1 */}
                     <div className="flex gap-6 pr-6">
                         {groupItems.map((item, index) => (
-                            <CarouselCard
-                                key={`g1-${item.id}-${index}`}
-                                item={item}
-                            />
+                            <div key={`g1-${item.id}-${index}`}>
+                                <CarouselCard item={item} />
+                            </div>
                         ))}
                     </div>
                     {/* HUGE GROUP 2 (Duplicate) */}
                     <div className="flex gap-6 pr-6">
                         {groupItems.map((item, index) => (
-                            <CarouselCard
-                                key={`g2-${item.id}-${index}`}
-                                item={item}
-                            />
+                            <div key={`g2-${item.id}-${index}`}>
+                                <CarouselCard item={item} />
+                            </div>
                         ))}
                     </div>
                 </div>

@@ -27,8 +27,8 @@ export default function Blog() {
                     </p>
                 </m.div>
 
-                {/* Blog Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {/* Blog Grid / Mobile Carousel */}
+                <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto md:overflow-visible pb-8 md:pb-0 snap-x snap-mandatory hide-scrollbar">
                     {BLOG_POSTS.slice(0, 6).map((post, index) => (
                         <m.article
                             key={post.id}
@@ -36,55 +36,57 @@ export default function Blog() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
-                            className="group bg-slate-900/50 rounded-2xl overflow-hidden border border-white/5 hover:border-blue-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/5"
+                            className="group relative flex-shrink-0 w-[85vw] md:w-auto snap-center bg-slate-900/50 rounded-2xl overflow-hidden border border-white/5 hover:border-blue-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/5 cursor-pointer"
                         >
-                            {/* Image */}
-                            <div className="relative h-48 overflow-hidden">
-                                <Image
-                                    src={post.image}
-                                    alt={post.title}
-                                    fill
-                                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent" />
-                                <span className="absolute top-4 left-4 px-3 py-1 bg-blue-600/90 text-white text-xs font-medium rounded-full">
-                                    {post.category}
-                                </span>
-                            </div>
-
-                            {/* Content */}
-                            <div className="p-6">
-                                {/* Meta */}
-                                <div className="flex items-center gap-4 text-xs text-slate-500 mb-3">
-                                    <span className="flex items-center gap-1">
-                                        <Calendar className="w-3 h-3" />
-                                        {post.date}
-                                    </span>
-                                    <span className="flex items-center gap-1">
-                                        <Clock className="w-3 h-3" />
-                                        {post.readTime}
+                            <a href={post.link || "#"} className="block h-full">
+                                {/* Image */}
+                                <div className="relative h-48 overflow-hidden">
+                                    <Image
+                                        src={post.image}
+                                        alt={post.title}
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent" />
+                                    <span className="absolute top-4 left-4 px-3 py-1 bg-blue-600/90 text-white text-xs font-medium rounded-full">
+                                        {post.category}
                                     </span>
                                 </div>
 
-                                {/* Title */}
-                                <h3 className="text-lg font-bold text-white mb-2 line-clamp-2 group-hover:text-blue-400 transition-colors">
-                                    {post.title}
-                                </h3>
+                                {/* Content */}
+                                <div className="p-6">
+                                    {/* Meta */}
+                                    <div className="flex items-center gap-4 text-xs text-slate-500 mb-3">
+                                        <span className="flex items-center gap-1">
+                                            <Calendar className="w-3 h-3" />
+                                            {post.date}
+                                        </span>
+                                        <span className="flex items-center gap-1">
+                                            <Clock className="w-3 h-3" />
+                                            {post.readTime}
+                                        </span>
+                                    </div>
 
-                                {/* Excerpt */}
-                                <p className="text-slate-400 text-sm line-clamp-3 mb-4">
-                                    {post.excerpt}
-                                </p>
+                                    {/* Title */}
+                                    <h3 className="text-lg font-bold text-white mb-2 line-clamp-2 group-hover:text-blue-400 transition-colors">
+                                        {post.title}
+                                    </h3>
 
-                                {/* Read More */}
-                                <a
-                                    href={post.link || "#"}
-                                    className="inline-flex items-center gap-2 text-blue-400 text-sm font-medium hover:text-blue-300 transition-colors group/link"
-                                >
-                                    Baca Selengkapnya
-                                    <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
-                                </a>
-                            </div>
+                                    {/* Excerpt */}
+                                    <p className="text-slate-400 text-sm line-clamp-3 mb-4">
+                                        {post.excerpt}
+                                    </p>
+
+                                    {/* Read More */}
+                                    <div
+                                        className="inline-flex items-center gap-2 text-blue-400 text-sm font-medium hover:text-blue-300 transition-colors group/link"
+                                    >
+                                        Baca Selengkapnya
+                                        <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
+                                    </div>
+                                </div>
+                            </a>
                         </m.article>
                     ))}
                 </div>
@@ -109,3 +111,14 @@ export default function Blog() {
         </section>
     );
 }
+
+// Add custom styles for hiding scrollbar but keeping functionality
+const styles = `
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+`;

@@ -120,9 +120,29 @@ body {
    SELECTION STYLES
    =================================== */
 
+/* ===================================
+   FONTS
+   =================================== */
+@font-face {
+  font-family: 'Robotika';
+  src: url('/fonts/JLSSpaceGothicR_NC.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-robotika {
+  font-family: 'Robotika', sans-serif;
+}
+
+/* ===================================
+   SELECTION STYLES
+   =================================== */
+
 ::selection {
-  background: var(--color-primary);
+  background: var(--color-primary-light);
   color: white;
+  text-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
 }
 
 /* ===================================
@@ -130,21 +150,22 @@ body {
    =================================== */
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-bg-secondary);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-primary);
+  background: rgba(59, 130, 246, 0.3);
   border-radius: var(--radius-full);
+  backdrop-filter: blur(4px);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-primary-light);
+  background: var(--color-primary);
 }
 
 /* ===================================

@@ -46,10 +46,15 @@ export const metadata: Metadata = {
 
     // Icons
     icons: {
-        icon: "/favicon.ico",
+        icon: [
+            { url: "/favicon.ico", sizes: "any" },
+        ],
         shortcut: "/favicon.ico",
         apple: "/apple-touch-icon.png",
     },
+
+    // Metadata Base
+    metadataBase: new URL("https://robotika.uns.ac.id"),
 
     // Robots
     robots: {
