@@ -190,7 +190,7 @@ export const HeroParallax = ({
     return (
         <div
             ref={ref}
-            className="h-[250vh] py-0 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d] bg-[#0B1120]"
+            className="h-[180vh] py-0 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d] bg-[#0B1120]"
         >
             <Header />
             <m.div
@@ -208,16 +208,17 @@ export const HeroParallax = ({
                             product={product}
                             translate={translateX}
                             key={product.title}
-                            priority={index < 3}
+                            priority={true}
                         />
                     ))}
                 </m.div>
                 <m.div className="flex flex-row mb-20 space-x-10 ">
-                    {secondRow.map((product) => (
+                    {secondRow.map((product, index) => (
                         <ProductCard
                             product={product}
                             translate={translateXReverse}
                             key={product.title}
+                            priority={index < 2}
                         />
                     ))}
                 </m.div>
@@ -238,11 +239,21 @@ export const HeroParallax = ({
 export const Header = ({ isMobile = false }) => {
     return (
         <div className={`max-w-7xl relative mx-auto py-20 ${isMobile ? 'md:py-20 text-center' : 'md:py-40'} px-4 w-full left-0 top-0`}>
+            {/* Super Grafis Background */}
+            <div className="absolute top-0 right-0 -z-10 opacity-30 pointer-events-none select-none overflow-hidden">
+                <svg width="600" height="600" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg" className="animate-spin-slow origin-center scale-150 md:scale-100">
+                    <circle cx="300" cy="300" r="150" stroke="#3B82F6" strokeWidth="2" strokeDasharray="10 10" />
+                    <circle cx="300" cy="300" r="200" stroke="#06B6D4" strokeWidth="1" strokeDasharray="20 10" />
+                    <circle cx="300" cy="300" r="250" stroke="#8B5CF6" strokeWidth="0.5" />
+                    <path d="M300 50 L300 550 M50 300 L550 300" stroke="white" strokeOpacity="0.1" />
+                </svg>
+            </div>
+
             <ScrollReveal>
-                <h1 className="text-4xl md:text-8xl font-bold dark:text-white text-white leading-tight">
+                <h1 className={`text-5xl md:text-8xl font-bold dark:text-white text-white leading-tight font-robotika tracking-wide ${isMobile ? 'text-left' : 'md:text-center text-left'}`}>
                     {HERO_CONTENT.title}
                 </h1>
-                <p className="max-w-2xl text-base md:text-2xl mt-8 dark:text-neutral-200 text-neutral-200 mx-auto md:mx-0">
+                <p className={`max-w-2xl text-base md:text-xl mt-8 dark:text-neutral-200 text-neutral-200 ${isMobile ? 'text-left mx-0' : 'md:text-center md:mx-auto text-left mx-0'}`}>
                     {HERO_CONTENT.subtitle}
                 </p>
             </ScrollReveal>

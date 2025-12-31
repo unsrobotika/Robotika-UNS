@@ -67,8 +67,8 @@ export default function Gallery() {
                             key={category}
                             onClick={() => setActiveCategory(category)}
                             className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeCategory === category
-                                    ? "bg-blue-600 text-white shadow-lg shadow-blue-500/25"
-                                    : "bg-slate-800 text-slate-300 hover:bg-slate-700"
+                                ? "bg-blue-600 text-white shadow-lg shadow-blue-500/25"
+                                : "bg-slate-800 text-slate-300 hover:bg-slate-700"
                                 }`}
                         >
                             {category}
@@ -79,7 +79,7 @@ export default function Gallery() {
                 {/* Gallery Grid */}
                 <m.div
                     layout
-                    className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+                    className="flex md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 overflow-x-auto md:overflow-visible pb-8 md:pb-0 snap-x snap-mandatory hide-scrollbar"
                 >
                     {filteredItems.map((item, index) => (
                         <m.div
@@ -89,13 +89,14 @@ export default function Gallery() {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.3, delay: index * 0.05 }}
-                            className="relative aspect-square rounded-xl overflow-hidden cursor-pointer group"
+                            className="relative flex-shrink-0 w-[80vw] md:w-auto aspect-square rounded-xl overflow-hidden cursor-pointer group snap-center"
                             onClick={() => setSelectedImage(index)}
                         >
                             <Image
                                 src={item.image}
                                 alt={item.title}
                                 fill
+                                sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
                                 className="object-cover transition-transform duration-500 group-hover:scale-110"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">

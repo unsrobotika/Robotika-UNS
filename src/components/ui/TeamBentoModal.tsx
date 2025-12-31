@@ -1,6 +1,7 @@
 "use client";
 
 import { m, AnimatePresence } from "motion/react";
+import { useEffect } from "react";
 import { X, Trophy, Bot, Medal, Users } from "lucide-react";
 import { TeamItem } from "@/lib/data";
 import Image from "next/image";
@@ -19,6 +20,18 @@ export default function TeamBentoModal({
     if (!team) return null;
 
     const bento = team.bentoContent;
+
+    // Lock body scroll
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "unset";
+        }
+        return () => {
+            document.body.style.overflow = "unset";
+        };
+    }, [isOpen]);
 
     return (
         <AnimatePresence>

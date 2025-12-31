@@ -696,8 +696,8 @@ export interface ContactInfo {
 export const CONTACT_INFO: ContactInfo = {
     email: "robotika@uns.ac.id",
     whatsapp: "+62 812-3456-7890",
-    location: "Laboratorium Robotika UNS",
-    address: "Gedung Fakultas Teknik, Jl. Ir. Sutami No.36A, Kentingan, Surakarta, Jawa Tengah 57126",
+    location: "Graha Ormawa 2, UNS",
+    address: "Graha Ormawa 2, Universitas Sebelas Maret, Kentingan, Surakarta",
     operatingHours: "Senin - Jumat, 16:00 - 21:00 WIB",
     socialMedia: [
         {

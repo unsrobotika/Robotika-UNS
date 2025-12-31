@@ -1,4 +1,4 @@
-# 🤖 Robotika UNS - Landing Page
+# Robotika UNS - Landing Page
 
 Official Landing Page untuk **Tim Robotika Universitas Sebelas Maret (UNS)**. 
 
@@ -11,22 +11,22 @@ Website ini dibangun dengan modern tech stack untuk memberikan pengalaman terbai
 
 ---
 
-## ✨ Fitur
+## Fitur
 
-### 🎨 Design & UI
+### Design & UI
 - **Dark Theme** - Tema gelap modern dengan warna biru tua branding
 - **Responsive Design** - Optimal di desktop, tablet, dan mobile
 - **Smooth Animations** - Animasi halus menggunakan Framer Motion
 - **Glassmorphism Effects** - Efek blur dan transparansi modern
 - **Custom Scrollbar** - Scrollbar yang match dengan tema
 
-### 📱 Navigation
+### Navigation
 - **Floating Navigation** - Navbar yang mengikuti scroll
 - **Hamburger Menu** - Menu mobile dengan drawer slide-out
 - **Smooth Scroll** - Scroll halus antar section menggunakan Lenis
 - **Section Anchors** - Navigasi langsung ke section tertentu
 
-### 📄 Sections
+### Sections
 1. **Hero** - Parallax hero section dengan gambar produk/kegiatan
 2. **About Us** - Tentang kami, Visi & Misi dengan flip cards
 3. **Divisions** - Divisi teknis dan non-teknis dengan bento modal detail
@@ -40,7 +40,7 @@ Website ini dibangun dengan modern tech stack untuk memberikan pengalaman terbai
 11. **Footer** - Links, kontak, dan social media
 12. **AI Chat** - Chatbot AI untuk menjawab pertanyaan pengunjung
 
-### 🔧 Technical
+### Technical
 - **SEO Optimized** - Meta tags, OG tags, dan structured data
 - **Performance** - Dynamic imports dan code splitting
 - **Accessibility** - Alt text, aria labels, semantic HTML
@@ -49,7 +49,7 @@ Website ini dibangun dengan modern tech stack untuk memberikan pengalaman terbai
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Node.js 18+ 
@@ -83,67 +83,64 @@ npm start
 
 ---
 
-## 📁 Struktur Folder
+## Penjelasan Detail File & Struktur Proyek
 
-```
-src/
-├── app/                          # Next.js App Router
-│   ├── globals.css               # Design system & global styles
-│   ├── layout.tsx                # Root layout dengan SEO metadata
-│   └── page.tsx                  # Halaman utama
-│
-├── components/
-│   ├── sections/                 # Section components
-│   │   ├── Header.tsx            # Navbar responsive + hamburger menu
-│   │   ├── Hero.tsx              # Hero parallax section
-│   │   ├── Philosophy.tsx        # About Us, Visi & Misi flip cards
-│   │   ├── UnifiedDivisions.tsx  # Carousel divisi teknis & non-teknis
-│   │   ├── TeamRadial.tsx        # Tim robot dengan layout radial
-│   │   ├── Gallery.tsx           # Galeri foto dengan lightbox
-│   │   ├── Blog.tsx              # Daftar artikel/berita
-│   │   ├── FAQ.tsx               # Accordion FAQ
-│   │   ├── Sponsors.tsx          # Logo sponsor & media partner
-│   │   ├── Registration.tsx      # CTA pendaftaran
-│   │   ├── Contact.tsx           # Informasi kontak
-│   │   ├── Footer.tsx            # Footer dengan links
-│   │   └── AIChat.tsx            # AI chatbot
-│   │
-│   ├── ui/                       # Reusable UI components
-│   │   ├── FloatingNavbar.tsx    # Floating navigation
-│   │   ├── HeroParallax.tsx      # Parallax effect untuk hero
-│   │   ├── FlipCard.tsx          # Flip card untuk visi misi
-│   │   ├── ScrollReveal.tsx      # Scroll reveal animation
-│   │   └── ...
-│   │
-│   ├── providers/                # Context providers
-│   │   └── MotionProvider.tsx    # Framer Motion provider
-│   │
-│   └── SmoothScroll.tsx          # Lenis smooth scroll wrapper
-│
-├── lib/
-│   ├── data.ts                   # ⭐ SEMUA DATA KONTEN WEBSITE
-│   └── utils.ts                  # Utility functions
-│
-└── hooks/                        # Custom React hooks
+Berikut adalah panduan lengkap mengenai file-file penting dalam proyek ini. Pahami struktur ini untuk memudahkan proses editing.
 
-public/
-├── MainLogo.jpg                  # Logo utama Robotika UNS
-├── images/                       # Gambar assets
-│   ├── placeholder.webp          # Placeholder image
-│   ├── werkudara_bot.webp        # Foto robot Werkudara
-│   ├── sambergeni_bot.webp       # Foto robot Sambergeni
-│   ├── sriwedari_bot.webp        # Foto robot Sriwedari
-│   └── ...
-└── favicon.ico                   # Favicon
-```
+### 1. **Core System (`src/app/`)**
+Folder ini mengatur routing dan kerangka utama website.
+- **`layout.tsx`**: File induk dari seluruh halaman. Mengatur font (Inter, Robotika), metadata SEO (Title, Description), dan membungkus halaman dengan `smooth-scroll`. Edit file ini jika ingin mengubah favicon atau meta tags.
+- **`page.tsx`**: Halaman utama (Homepage). File ini menyusun urutan section (Hero -> About -> Divisions -> dst). Jika ingin mengubah urutan tampilan website, ubah di sini.
+- **`globals.css`**: Menyimpan variabel warna (CSS Variables) dan style global. Style reset dan konfigurasi Tailwind Custom ada di sini.
+
+### 2. **Pusat Konten (`src/lib/`)**
+- **`data.ts`** (**SANGAT PENTING**): File ini adalah "Database" sederhana website. **90% pengeditan teks dan gambar dilakukan di sini.** Berisi:
+  - Teks Navigasi & Footer (`NAV_ITEMS`, `FOOTER_CONTENT`)
+  - Konten Hero & Produk Parallax (`HERO_CONTENT`, `HERO_PRODUCTS`)
+  - Data Divisi Teknis & Non-Teknis (`TECH_DIVISIONS`)
+  - Profil Tim Robot (`TEAMS`)
+  - Data Galeri, Blog, FAQ, dan Sponsor.
+- **`utils.ts`**: Fungsi bantuan (utility) untuk menggabungkan class name (cn). Jarang perlu diedit.
+
+### 3. **Komponen Bagian (`src/components/sections/`)**
+Setiap file di sini mewakili satu blok tampilan di website (dari atas ke bawah):
+- **`Header.tsx`**: Navbar bagian atas. Mengatur logo dan menu responsif (Mobile Drawer).
+- **`Hero.tsx`**: Bagian paling atas website (Parallax effect). Memanggil `HeroParallax.tsx`.
+- **`Philosophy.tsx`**: Section "Tentang Kami". Menampilkan Visi & Misi menggunakan kartu bolak-balik (`FlipCard`).
+- **`UnifiedDivisions.tsx`**: Menampilkan daftar Divisi. Menggunakan `HorizontalScrollCarousel` untuk non-teknis dan Grid untuk teknis. Membuka `BentoModal` saat diklik.
+- **`TeamRadial.tsx`**: Menampilkan 3 Tim Robot (Werkudara, Sambergeni, Sriwedari) dalam layout melingkar yang futuristik. Membuka `TeamBentoModal`.
+- **`Gallery.tsx`**: Galeri foto kegiatan dengan filter kategori.
+- **`Blog.tsx`**: Daftar berita atau artikel terbaru.
+- **`FAQ.tsx`**: Daftar pertanyaan yang sering diajukan (Accordion).
+- **`Sponsors.tsx`**: Carousel logo sponsor dan media partner.
+- **`Registration.tsx`**: Form/CTA untuk pendaftaran anggota baru.
+- **`Contact.tsx`**: Informasi kontak (Alamat, Email, Map).
+- **`Footer.tsx`**: Bagian paling bawah website (Copyright & Links).
+- **`AIChat.tsx`**: Chatbot Floating di pojok kanan bawah.
+
+### 4. **Komponen UI (`src/components/ui/`)**
+Komponen visual yang dapat digunakan kembali (Reusable):
+- **`HeroParallax.tsx`**: Efek animasi scrolling canggih pada bagian Hero (Produk bergerak saat discroll).
+- **`FloatingNavbar.tsx`**: Navbar yang muncul/hilang saat discroll (Dynamic Island style).
+- **`BentoModal.tsx`**: Modal popup detail untuk Divisi. Menggunakan layout grid bento box.
+- **`TeamBentoModal.tsx`**: Modal popup khusus untuk Detail Tim Robot (Layout sedikit berbeda dari divisi).
+- **`FlipCard.tsx`**: Kartu Visi Misi yang bisa berputar saat di-hover.
+- **`ScrollReveal.tsx`**: Wrapper animasi agar elemen muncul perlahan (fade-in) saat discroll.
+- **`HorizontalScrollCarousel.jsx`**: Logic untuk scroll menyamping pada bagian Divisi Non-Teknis.
+
+### 5. **Assets (`public/`)**
+Tempat menyimpan file statis (Gambar, Icon, Logo).
+- **`images/`**: Folder utama gambar.
+- **`favicon.ico`**: Ikon tab browser.
+- **`MainLogo.jpg`**: Logo utama website.
 
 ---
 
-## 📝 Cara Mengubah Konten
+## Cara Mengubah Konten
 
 **Semua konten website terpusat di file `src/lib/data.ts`.** Edit file ini untuk mengubah seluruh teks dan data yang tampil di website.
 
-### 🧭 Navigation & Header
+### Navigation & Header
 ```typescript
 export const NAV_ITEMS = [
     { name: "Beranda", href: "#hero" },
@@ -158,7 +155,7 @@ export const REGISTER_LINK = {
 };
 ```
 
-### 🏠 Hero Section
+### Hero Section
 ```typescript
 export const HERO_CONTENT = {
     title: "ROBOTIKA UNS",
@@ -171,7 +168,7 @@ export const HERO_PRODUCTS = [
 ];
 ```
 
-### 📖 About Us & Philosophy
+### About Us & Philosophy
 ```typescript
 export const ABOUT_US_CONTENT = {
     title: "About Us",
@@ -185,13 +182,13 @@ export const PHILOSOPHY_CONTENT = {
 };
 ```
 
-### 🔧 Divisi
+### Divisi
 ```typescript
 export const NON_TECH_DIVISIONS = [...];  // HR, Humas, Sekretaris, Bendahara
 export const TECH_DIVISIONS = [...];       // Desain, Elektronis, Pemrograman, R&D
 ```
 
-### 🤖 Tim Robot
+### Tim Robot
 ```typescript
 export const TEAMS = [
     { name: "Werkudara", desc: "Robot ABU", ... },
@@ -200,14 +197,14 @@ export const TEAMS = [
 ];
 ```
 
-### 🖼️ Galeri, Blog, FAQ
+### Galeri, Blog, FAQ
 ```typescript
 export const GALLERY_ITEMS = [...];   // Item galeri
 export const BLOG_POSTS = [...];      // Artikel blog
 export const FAQ_ITEMS = [...];       // Pertanyaan FAQ
 ```
 
-### 📞 Kontak & Sponsor
+### Kontak & Sponsor
 ```typescript
 export const CONTACT_INFO = {
     email: "robotika@uns.ac.id",
@@ -221,7 +218,7 @@ export const SPONSORS = [...];        // Daftar sponsor
 export const MEDIA_PARTNERS = [...];  // Media partner
 ```
 
-### 📋 Registration Section
+### Registration Section
 ```typescript
 export const REGISTRATION_CONTENT = {
     badge: "Open Recruitment 2024/2025",
@@ -236,7 +233,7 @@ export const REGISTRATION_CONTENT = {
 };
 ```
 
-### 🏷️ Section Titles
+### Section Titles
 ```typescript
 export const SECTION_TITLES = {
     divisions: { title: "Our Divisions", subtitle: "..." },
@@ -246,7 +243,7 @@ export const SECTION_TITLES = {
 };
 ```
 
-### 🔗 Footer Content
+### Footer Content
 ```typescript
 export const FOOTER_CONTENT = {
     organizationName: "Robotika UNS",
@@ -257,7 +254,7 @@ export const FOOTER_CONTENT = {
 export const FOOTER_QUICK_LINKS = [...]; // Link navigasi footer
 ```
 
-### 📝 Form Links
+### Form Links
 ```typescript
 export const FORM_LINKS = {
     registration: "https://uns.id/OpenRecruitmentRobotikaUNS",
@@ -267,7 +264,7 @@ export const FORM_LINKS = {
 
 ---
 
-## 🎨 Design System
+## Design System
 
 CSS variables tersedia di `globals.css`:
 
@@ -290,7 +287,7 @@ CSS variables tersedia di `globals.css`:
 
 ---
 
-## 🚀 Deploy ke Vercel
+## Deploy ke Vercel
 
 1. Push repository ke GitHub
 2. Buka [vercel.com](https://vercel.com) dan login
@@ -300,18 +297,18 @@ CSS variables tersedia di `globals.css`:
 
 ---
 
-## 📜 License
+## License
 
 © 2024 Tim Robotika UNS. All rights reserved.
 
 ---
 
-## 🤝 Kontribusi
+## Kontribusi
 
 Ingin berkontribusi? Silakan buat pull request atau hubungi tim pengembang.
 
 ---
 
 <p align="center">
-  Dibuat dengan ❤️ oleh Tim Robotika UNS
+  Dibuat oleh Tim Robotika UNS
 </p>
