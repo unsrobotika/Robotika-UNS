@@ -35,6 +35,7 @@ export interface BentoContent {
     image: string;
     teamMembers?: TeamMember[];
     achievements: string[];
+    programs: string[];
     
 }
 
