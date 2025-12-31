@@ -34,6 +34,7 @@ export interface BentoContent {
     textContent: string;
     image: string;
     teamMembers?: TeamMember[];
+    achievements: string[];
     
 }
 
